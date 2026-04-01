@@ -298,6 +298,7 @@ section{padding:clamp(3rem,8vw,5.5rem) 1.5rem;}
 .art-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:1.4rem;}
 .art-card{background:var(--surf);border:1px solid var(--bord);overflow:hidden;transition:border-color .25s,transform .25s;}
 .art-card:hover{border-color:var(--acc);transform:translateY(-3px);}
+.art-tag{position:absolute;bottom:.7rem;left:.7rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--acc);background:color-mix(in srgb,var(--bg) 80%,transparent);border:1px solid var(--bord);padding:.2rem .5rem;pointer-events:none;}
 .art-preview{height:clamp(160px,25vw,210px);background:color-mix(in srgb,var(--bg) 80%,var(--acc) 20%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
 .art-placeholder{font-size:2.5rem;opacity:.25;}
 .art-lock{position:absolute;inset:0;background:rgba(8,8,9,.6);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;}
@@ -403,6 +404,15 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .proj-title{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--pale);margin-bottom:.5rem;line-height:1.3;}
 .proj-desc{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;}
 .proj-link{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);}
+
+/* ═══ LIGHTBOX ═══ */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lb-overlay.open{display:flex;}
+.lb-overlay img{max-width:90vw;max-height:90vh;object-fit:contain;box-shadow:0 0 60px rgba(0,0,0,.8);}
+.lb-close{position:fixed;top:1.2rem;right:1.5rem;font-size:2rem;color:#fff;cursor:pointer;opacity:.7;transition:opacity .2s;line-height:1;z-index:10000;}
+.lb-close:hover{opacity:1;}
+.art-card{cursor:zoom-in;}
+
 /* ═══════════════════════════════════
    UTILS / ANIMATION
 ═══════════════════════════════════ */
@@ -645,47 +655,154 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
     <div class="sec-head">
       <span class="sec-tag">Commissioned Works</span>
       <h2 class="sec-title">Art</h2>
-      <p class="sec-sub">Fanart commissioned for the stories. Full pieces unlocked at Thane tier and above.</p>
+      <p class="sec-sub">Commissioned art for the stories. Click any piece to enlarge.</p>
     </div>
+
+    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Of Lightning and Blood</h3>
     <div class="art-grid">
+
       <div class="art-card reveal">
-        <div class="art-preview">
-          <span class="art-placeholder">⚫</span>
-          <div class="art-lock">
-            <span class="art-lock-icon">🔒</span>
-            <span class="art-lock-tier">Thane · $30+</span>
-            <span class="art-lock-cta">Unlock on Patreon</span>
-          </div>
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/melkorn_character.jpg" alt="Melkorn — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Of Lightning and Blood</span>
         </div>
         <div class="art-info">
-          <div class="art-title">Vader's Custom Lightsaber — Crucible</div>
-          <div class="art-sub">The split-hilt design. Full res available to Thane+.</div>
+          <div class="art-title">Melkorn</div>
+          <div class="art-sub">Full character commission. The Dragonborn.</div>
         </div>
       </div>
+
       <div class="art-card reveal">
-        <div class="art-preview">
-          <span class="art-placeholder">🐺</span>
-          <div class="art-lock">
-            <span class="art-lock-icon">🔒</span>
-            <span class="art-lock-tier">Thane · $30+</span>
-            <span class="art-lock-cta">Unlock on Patreon</span>
-          </div>
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/weapons_display.jpg" alt="Weapons — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Of Lightning and Blood</span>
         </div>
         <div class="art-info">
-          <div class="art-title">Character Art — Woe to the Vanquished</div>
-          <div class="art-sub">Commissioned character fanart. Full res at Thane+.</div>
+          <div class="art-title">Weapons of the Dragonborn</div>
+          <div class="art-sub">The sword and dagger, displayed together.</div>
         </div>
       </div>
+
       <div class="art-card reveal">
-        <div class="art-preview"><span class="art-placeholder">✦</span></div>
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/sword_solo.jpg" alt="The Sword — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Of Lightning and Blood</span>
+        </div>
         <div class="art-info">
-          <div class="art-title">More Coming</div>
-          <div class="art-sub">New commissions added as stories grow. <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc)">Join the Discord</a> for previews.</div>
+          <div class="art-title">The Sword</div>
+          <div class="art-sub">Melkorn's blade.</div>
+        </div>
+      </div>
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/dagger_solo.jpg" alt="The Dagger — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Of Lightning and Blood</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Dagger</div>
+          <div class="art-sub">Melkorn's sidearm.</div>
         </div>
       </div>
     </div>
+
+    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Crucible</h3>
+    <div class="art-grid">
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/lightsabers_trio.jpg" alt="Vader's Lightsabers — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Crucible</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Three Configurations</div>
+          <div class="art-sub">Vader's custom lightsaber across its forms.</div>
+        </div>
+      </div>
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/lightsaber_full.jpg" alt="Vader's Lightsaber — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Crucible</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Saber — Standard</div>
+          <div class="art-sub">Full blade, standard length.</div>
+        </div>
+      </div>
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/lightsaber_reflected.jpg" alt="Vader's Lightsaber Reflected — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Crucible</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Saber — Reflected</div>
+          <div class="art-sub">Blade and its reflection.</div>
+        </div>
+      </div>
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/lightsaber_shoto.jpg" alt="Vader's Shoto — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Crucible</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Shoto</div>
+          <div class="art-sub">Short blade configuration.</div>
+        </div>
+      </div>
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/lightsaber_combat.jpg" alt="Vader's Combat Saber — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Crucible</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">The Saber — Combat Length</div>
+          <div class="art-sub">Combat configuration.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Shadow and Lightning</h3>
+    <div class="art-grid">
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/wand_harry.jpg" alt="Harry's Wand — Shadow and Lightning" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Shadow and Lightning</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">Harry's Wand</div>
+          <div class="art-sub">Commission for Shadow and Lightning.</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Frost and Death</h3>
+    <div class="art-grid">
+
+      <div class="art-card reveal">
+        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
+          <img src="art/danny_ch8.jpg" alt="Danny — Frost and Death Ch.8" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
+          <span class="art-tag">Frost and Death</span>
+        </div>
+        <div class="art-info">
+          <div class="art-title">Danny — Chapter 8</div>
+          <div class="art-sub">Character commission. Danny as of chapter 8.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:2rem;font-size:.8rem;color:var(--muted);font-style:italic;">
+      More commissions added as stories grow. Join the <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> for previews.
+    </p>
   </div>
 </section>
+
+
+
 
 <!-- PATREON -->
 <section id="patreon">
@@ -986,5 +1103,12 @@ async function handleSubscribe() {
   }
 }
 </script>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="this.classList.remove('open')">
+  <span class="lb-close" onclick="document.getElementById('lightbox').classList.remove('open')">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+
 </body>
 </html>
