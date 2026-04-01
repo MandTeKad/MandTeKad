@@ -387,6 +387,22 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .f-tag{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--acc);margin-bottom:.45rem;}
 .f-sub{font-size:.74rem;color:var(--muted);font-style:italic;}
 
+
+/* ═══ PROJECTS ═══ */
+#projects{background:var(--bg);}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem;}
+.proj-card{background:var(--surf);border:1px solid var(--bord);overflow:hidden;transition:border-color .25s,transform .25s;text-decoration:none;display:block;}
+.proj-card:hover{border-color:var(--acc);transform:translateY(-4px);}
+.proj-preview{height:clamp(140px,18vw,200px);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.proj-preview-lore{background:linear-gradient(135deg,#0a0800,#1a1400);border-bottom:1px solid var(--bord);}
+.proj-preview-cook{background:linear-gradient(135deg,#1a0e00,#2a1800);border-bottom:1px solid var(--bord);}
+.proj-icon{font-size:3rem;opacity:.6;transition:opacity .25s,transform .25s;}
+.proj-card:hover .proj-icon{opacity:.9;transform:scale(1.08);}
+.proj-tag{position:absolute;top:.8rem;right:.8rem;font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);background:color-mix(in srgb,var(--bg) 85%,transparent);border:1px solid var(--bord);padding:.2rem .55rem;}
+.proj-body{padding:1.5rem 1.8rem;}
+.proj-title{font-family:'Cinzel',serif;font-size:1.05rem;font-weight:700;color:var(--pale);margin-bottom:.5rem;line-height:1.3;}
+.proj-desc{font-size:.88rem;color:var(--muted);line-height:1.7;margin-bottom:1rem;}
+.proj-link{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--acc);}
 /* ═══════════════════════════════════
    UTILS / ANIMATION
 ═══════════════════════════════════ */
@@ -435,7 +451,8 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
       <li><a href="#art">Art</a></li>
       <li><a href="#patreon">Patreon</a></li>
       <li><a href="#subscribe">Updates</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
       <li><a href="https://discord.gg/KcZNQ9HSZW" target="_blank" class="nav-disc">Discord</a></li>
     </ul>
     <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark mode">☀</button>
@@ -451,6 +468,7 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
   <a href="#art" class="mob-link">Art</a>
   <a href="#patreon" class="mob-link">Patreon</a>
   <a href="#subscribe" class="mob-link">Updates</a>
+  <a href="#projects" class="mob-link">Projects</a>
   <a href="#about" class="mob-link">About</a>
   <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" class="mob-disc mob-link">Discord</a>
 </div>
@@ -744,6 +762,44 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
     </div>
     <p class="sub-note" id="subMsg">No spam. Unsubscribe any time.</p>
     <p class="sub-setup" id="subSetup">⚙ To activate: sign up free at emailjs.com → fill your IDs in the script</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Beyond the Page</span>
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-sub">Lore tools, reference documents, and other things built alongside the writing.</p>
+    </div>
+    <div class="proj-grid">
+
+      <a href="https://mandtekad.github.io/Vader-s-Surgery-and-Suit-Logs/" target="_blank" class="proj-card">
+        <div class="proj-preview proj-preview-lore">
+          <span class="proj-icon">⚫</span>
+          <span class="proj-tag">Crucible · Lore</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Imperial Medical File E-3778Q-1</div>
+          <p class="proj-desc">The classified document behind Crucible. Lord Vader's full reconstruction record — surgical logs, suit specifications, respirator schematics, life support systems, combat profile, and Imperial maintenance directives. Fully Legends-compliant. Level Aurek clearance required. Unauthorised access is a capital offence.</p>
+          <span class="proj-link">Access the archive →</span>
+        </div>
+      </a>
+
+      <a href="https://mandtekad.github.io/Cookbook/" target="_blank" class="proj-card">
+        <div class="proj-preview proj-preview-cook">
+          <span class="proj-icon">🍖</span>
+          <span class="proj-tag">Real World</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">The High Protein Cookbook</div>
+          <p class="proj-desc">37 high-protein recipes across six sections — batch crockpot builds, fresh 15-minute meals, six ways to cook pork tenderloin, fast breakfasts, snacks, and dessert. 200g+ protein per day, ~$100 per week. Built for people who want to eat well without overthinking it.</p>
+          <span class="proj-link">Open the cookbook →</span>
+        </div>
+      </a>
+
+    </div>
   </div>
 </section>
 
