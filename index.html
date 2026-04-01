@@ -1102,6 +1102,20 @@ async function handleSubscribe() {
     btn.disabled = false;
   }
 }
+
+  // Lightbox — event delegation
+  document.addEventListener('click', e => {
+    const img = e.target.closest('.art-card img');
+    if (img) {
+      e.stopPropagation();
+      document.getElementById('lb-img').src = img.src;
+      document.getElementById('lb-img').alt = img.alt;
+      document.getElementById('lightbox').classList.add('open');
+    }
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+  });
 </script>
 
 <!-- LIGHTBOX -->
