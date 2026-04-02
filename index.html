@@ -410,7 +410,7 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 
 /* ═══ DRAGON EGG EASTER EGG ═══ */
 
-#egg-label{position:fixed;bottom:1.2rem;left:3.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--acc);opacity:.6;pointer-events:none;white-space:nowrap;transition:opacity .2s;}
+#egg-label{position:fixed;bottom:1rem;left:4rem;font-family:'Cinzel',serif;font-size:1.1rem;letter-spacing:.08em;color:var(--acc);opacity:.75;pointer-events:none;white-space:nowrap;text-shadow:0 0 8px rgba(176,30,30,.5);}
 #egg-btn:hover ~ #egg-label, #egg-label:hover{opacity:1;}
 
 #egg-btn{position:fixed;bottom:1.4rem;left:1.4rem;width:2.8rem;height:3.2rem;cursor:pointer;z-index:8000;opacity:.55;transition:opacity .2s,transform .2s;user-select:none;}
@@ -419,7 +419,6 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 #egg-crack{position:fixed;inset:0;z-index:8500;pointer-events:none;display:none;}
 #egg-crack canvas{position:absolute;inset:0;width:100%;height:100%;}
 #dragon-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:8001;display:none;}
-#egg-label{position:fixed;bottom:1.1rem;left:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;color:var(--acc);opacity:.55;pointer-events:none;white-space:nowrap;}
 #egg-hint{position:fixed;bottom:5rem;left:1rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--acc);opacity:0;transition:opacity .4s;pointer-events:none;z-index:8002;}
 
 /* ═══ ART CAROUSELS ═══ */
@@ -1139,23 +1138,7 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
     if (Math.abs(dx) > 40) carouselMove(wrap.id, dx < 0 ? 1 : -1);
   }, {passive:true});
 });
-// Click to open lightbox — direct listeners on each image
-function attachLightbox() {
-  document.querySelectorAll('.carousel-slide img').forEach(img => {
-    img.style.cursor = 'zoom-in';
-    img.addEventListener('click', function(e) {
-      e.stopPropagation();
-      document.getElementById('lb-img').src = this.src;
-      document.getElementById('lb-img').alt = this.alt;
-      document.getElementById('lightbox').classList.add('open');
-    });
-  });
-}
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', attachLightbox);
-} else {
-  attachLightbox();
-}
+// lightbox attached in DOMContentLoaded below
 
 // ── DRAGON EGG EASTER EGG ────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
@@ -1173,6 +1156,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const eggLabel=document.getElementById('egg-label');
   const canvas=document.getElementById('dragon-canvas');
   const ctx=canvas.getContext('2d');
+
+  // Attach lightbox to all carousel images
+  document.querySelectorAll('.carousel-slide img').forEach(img => {
+    img.style.cursor='zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const lb=document.getElementById('lightbox');
+      const lbImg=document.getElementById('lb-img');
+      if(lb&&lbImg){lbImg.src=this.src;lbImg.alt=this.alt;lb.classList.add('open');}
+    });
+  });
 
   function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
   resize(); window.addEventListener('resize',resize);
