@@ -409,12 +409,17 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 
 
 /* ═══ DRAGON EGG EASTER EGG ═══ */
+
+#egg-label{position:fixed;bottom:1.2rem;left:3.8rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--acc);opacity:.6;pointer-events:none;white-space:nowrap;transition:opacity .2s;}
+#egg-btn:hover ~ #egg-label, #egg-label:hover{opacity:1;}
+
 #egg-btn{position:fixed;bottom:1.4rem;left:1.4rem;width:2.8rem;height:3.2rem;cursor:pointer;z-index:8000;opacity:.55;transition:opacity .2s,transform .2s;user-select:none;}
 #egg-btn:hover{opacity:1;transform:scale(1.1);}
 #egg-btn svg{width:100%;height:100%;}
 #egg-crack{position:fixed;inset:0;z-index:8500;pointer-events:none;display:none;}
 #egg-crack canvas{position:absolute;inset:0;width:100%;height:100%;}
 #dragon-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:8001;display:none;}
+#egg-label{position:fixed;bottom:1.1rem;left:4rem;font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.1em;color:var(--acc);opacity:.55;pointer-events:none;white-space:nowrap;}
 #egg-hint{position:fixed;bottom:5rem;left:1rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--acc);opacity:0;transition:opacity .4s;pointer-events:none;z-index:8002;}
 
 /* ═══ ART CAROUSELS ═══ */
@@ -1134,200 +1139,291 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
     if (Math.abs(dx) > 40) carouselMove(wrap.id, dx < 0 ? 1 : -1);
   }, {passive:true});
 });
-// Click to open lightbox — event delegation so it always works
-document.addEventListener('click', e => {
-  const img = e.target.closest('.carousel-slide img');
-  if (img) {
-    e.stopPropagation();
-    document.getElementById('lb-img').src = img.src;
-    document.getElementById('lightbox').classList.add('open');
-  }
-});
+// Click to open lightbox — direct listeners on each image
+function attachLightbox() {
+  document.querySelectorAll('.carousel-slide img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('lb-img').src = this.src;
+      document.getElementById('lb-img').alt = this.alt;
+      document.getElementById('lightbox').classList.add('open');
+    });
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', attachLightbox);
+} else {
+  attachLightbox();
+}
 
 // ── DRAGON EGG EASTER EGG ────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
 (function() {
-  let active = false;
-  let mouse = {x: window.innerWidth/2, y: window.innerHeight/2};
-  let dragon = {x: -200, y: 300, angle: 0, vx: 0, vy: 0, flame: [], flapping: 0};
-  let particles = [];
-  let eggShards = [];
-  let animId = null;
+  let active=false, phase='chase';
+  let mouse={x:window.innerWidth/2,y:window.innerHeight/2};
+  let dr={x:-300,y:400,angle:0,vx:0,vy:0,flap:0};
+  let stolenPos={x:0,y:0};
+  let exitTarget={x:0,y:0};
+  let flame=[],burst=[];
+  let textAlpha=0, stealTimer=0;
+  let animId=null;
 
-  const eggBtn = document.getElementById('egg-btn');
-  const hint = document.getElementById('egg-hint');
-  const canvas = document.getElementById('dragon-canvas');
-  const ctx = canvas.getContext('2d');
+  const eggBtn=document.getElementById('egg-btn');
+  const eggLabel=document.getElementById('egg-label');
+  const canvas=document.getElementById('dragon-canvas');
+  const ctx=canvas.getContext('2d');
 
-  setTimeout(() => { hint.style.opacity = '.85'; }, 8000);
-  setTimeout(() => { hint.style.opacity = '0'; }, 14000);
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize(); window.addEventListener('resize',resize);
+  document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
 
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+  window._dragonKill=function(){
+    active=false;phase='chase';canvas.style.display='none';
+    cancelAnimationFrame(animId);flame=[];burst=[];
+    eggBtn.style.display='';eggBtn.style.transform='';
+    if(eggLabel)eggLabel.style.display='';
+    document.body.style.cursor='';
+  };
 
-  eggBtn.addEventListener('click', function() {
-    if (active) return;
-    active = true;
-    hint.style.opacity = '0';
-    crackEgg();
+  eggBtn.addEventListener('click',function(){
+    if(active)return; active=true; phase='chase';
+    let s=0; eggBtn.style.transition='transform .05s';
+    if(eggLabel)eggLabel.style.display='none';
+    const si=setInterval(()=>{
+      eggBtn.style.transform=`translate(${(Math.random()-.5)*10}px,${(Math.random()-.5)*10}px) rotate(${(Math.random()-.5)*15}deg)`;
+      s++;
+      if(s>16){clearInterval(si);eggBtn.style.display='none';spawnBurst();spawnDragon();}
+    },55);
   });
 
-  function crackEgg() {
-    eggBtn.style.transition = 'transform .05s';
-    let shakes = 0;
-    const si = setInterval(() => {
-      eggBtn.style.transform = `translate(${(Math.random()-.5)*8}px,${(Math.random()-.5)*8}px) rotate(${(Math.random()-.5)*10}deg)`;
-      shakes++;
-      if (shakes > 18) {
-        clearInterval(si);
-        eggBtn.style.display = 'none';
-        spawnShards();
-        spawnDragon();
-      }
-    }, 60);
-  }
-
-  function spawnShards() {
-    const rect = eggBtn.getBoundingClientRect();
-    const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
-    for (let i = 0; i < 14; i++) {
-      const a = (Math.PI*2/14)*i + Math.random()*.4, sp = 3+Math.random()*6;
-      eggShards.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3,r:4+Math.random()*8,
-        rot:Math.random()*Math.PI*2,rotV:(Math.random()-.5)*.3,life:1,decay:.018+Math.random()*.015,
-        color:['#1a0a00','#8b1515','#b01e1e','#3a1500'][Math.floor(Math.random()*4)]});
-    }
-    for (let i = 0; i < 30; i++) {
-      const a = Math.random()*Math.PI*2, sp = 2+Math.random()*8;
-      particles.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,life:1,decay:.02+Math.random()*.03,size:4+Math.random()*12});
+  function spawnBurst(){
+    const r=eggBtn.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+    for(let i=0;i<50;i++){
+      const a=Math.random()*Math.PI*2,sp=3+Math.random()*12;
+      burst.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-4,
+        life:1,decay:.018+Math.random()*.02,size:3+Math.random()*16,hue:Math.random()*50});
     }
   }
 
-  function spawnDragon() {
-    const edge = Math.floor(Math.random()*4);
-    if (edge===0){dragon.x=Math.random()*window.innerWidth;dragon.y=-100;}
-    else if(edge===1){dragon.x=window.innerWidth+100;dragon.y=Math.random()*window.innerHeight;}
-    else if(edge===2){dragon.x=Math.random()*window.innerWidth;dragon.y=window.innerHeight+100;}
-    else{dragon.x=-100;dragon.y=Math.random()*window.innerHeight;}
-    dragon.angle = Math.atan2(mouse.y-dragon.y, mouse.x-dragon.x);
-    canvas.style.display = 'block';
-    animate();
+  function spawnDragon(){
+    const e=Math.floor(Math.random()*4);
+    if(e===0){dr.x=Math.random()*window.innerWidth;dr.y=-150;}
+    else if(e===1){dr.x=window.innerWidth+150;dr.y=Math.random()*window.innerHeight;}
+    else if(e===2){dr.x=Math.random()*window.innerWidth;dr.y=window.innerHeight+150;}
+    else{dr.x=-150;dr.y=Math.random()*window.innerHeight;}
+    dr.angle=Math.atan2(mouse.y-dr.y,mouse.x-dr.x);
+    canvas.style.display='block'; animate();
   }
 
-  function drawDragon(x, y, angle, flap) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate(angle);
-    const sz = 48, wf = Math.sin(flap*.25)*.6;
-    // Body
-    ctx.beginPath(); ctx.ellipse(0,0,sz*.7,sz*.3,0,0,Math.PI*2);
-    ctx.fillStyle='#1a0800'; ctx.fill();
-    ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1.5; ctx.stroke();
-    // Head
-    ctx.beginPath(); ctx.ellipse(sz*.7,-sz*.05,sz*.28,sz*.22,.3,0,Math.PI*2);
-    ctx.fillStyle='#1a0800'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1.2; ctx.stroke();
-    // Snout
-    ctx.beginPath(); ctx.ellipse(sz*.95,-sz*.04,sz*.14,sz*.1,.2,0,Math.PI*2);
-    ctx.fillStyle='#250e00'; ctx.fill();
-    // Eye
-    ctx.beginPath(); ctx.arc(sz*.82,-sz*.12,4,0,Math.PI*2); ctx.fillStyle='#ff2200'; ctx.fill();
-    ctx.beginPath(); ctx.arc(sz*.83,-sz*.13,1.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
-    // Wings top
-    ctx.beginPath(); ctx.moveTo(-sz*.1,-sz*.1);
-    ctx.bezierCurveTo(-sz*.2,-sz*(.8+wf),sz*.3,-sz*(1.1+wf),sz*.4,-sz*.4);
-    ctx.bezierCurveTo(sz*.2,-sz*.3,sz*.1,-sz*.2,-sz*.1,-sz*.1);
-    ctx.fillStyle='rgba(139,21,21,0.7)'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1; ctx.stroke();
-    // Wings bottom
-    ctx.beginPath(); ctx.moveTo(-sz*.1,sz*.1);
-    ctx.bezierCurveTo(-sz*.2,sz*(.8-wf),sz*.3,sz*(1.1-wf),sz*.4,sz*.4);
-    ctx.bezierCurveTo(sz*.2,sz*.3,sz*.1,sz*.2,-sz*.1,sz*.1);
-    ctx.fillStyle='rgba(139,21,21,0.7)'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1; ctx.stroke();
-    // Tail
-    ctx.beginPath(); ctx.moveTo(-sz*.6,0);
-    ctx.bezierCurveTo(-sz*.9,sz*.2,-sz*1.1,sz*.5,-sz*1.0,sz*.7);
-    ctx.strokeStyle='#b01e1e'; ctx.lineWidth=5; ctx.lineCap='round'; ctx.stroke();
-    // Horns
-    ctx.beginPath();
-    ctx.moveTo(sz*.78,-sz*.18); ctx.lineTo(sz*.88,-sz*.38);
-    ctx.moveTo(sz*.88,-sz*.18); ctx.lineTo(sz*.95,-sz*.36);
-    ctx.strokeStyle='#8b1515'; ctx.lineWidth=2; ctx.stroke();
+  function drawDragon(x,y,angle,flapT){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(angle);
+    const sc=0.9,wf=Math.sin(flapT*.12)*22,wfR=wf*Math.PI/180;
+    ctx.beginPath();ctx.moveTo(-60*sc,0);ctx.bezierCurveTo(-90*sc,10*sc,-110*sc,30*sc,-100*sc,55*sc);
+    ctx.bezierCurveTo(-95*sc,70*sc,-80*sc,72*sc,-78*sc,65*sc);
+    ctx.strokeStyle='#8b0000';ctx.lineWidth=8*sc;ctx.lineCap='round';ctx.stroke();
+    ctx.strokeStyle='#c01020';ctx.lineWidth=4*sc;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-100*sc,55*sc);ctx.lineTo(-115*sc,70*sc);ctx.lineTo(-95*sc,65*sc);
+    ctx.fillStyle='#8b0000';ctx.fill();
+    ctx.save();ctx.rotate(-wfR);
+    ctx.beginPath();ctx.moveTo(-10*sc,-8*sc);ctx.lineTo(-20*sc,-55*sc);ctx.lineTo(20*sc,-85*sc);
+    ctx.bezierCurveTo(40*sc,-80*sc,55*sc,-60*sc,45*sc,-35*sc);
+    ctx.bezierCurveTo(55*sc,-25*sc,40*sc,-15*sc,20*sc,-12*sc);
+    ctx.bezierCurveTo(10*sc,-8*sc,-5*sc,-10*sc,-10*sc,-8*sc);
+    ctx.fillStyle='rgba(120,10,10,0.82)';ctx.fill();ctx.strokeStyle='#8b0000';ctx.lineWidth=1.2*sc;ctx.stroke();
+    ctx.strokeStyle='rgba(180,30,30,0.6)';ctx.lineWidth=.8*sc;
+    ctx.beginPath();ctx.moveTo(-15*sc,-10*sc);ctx.lineTo(18*sc,-82*sc);
+    ctx.moveTo(-15*sc,-10*sc);ctx.lineTo(42*sc,-38*sc);
+    ctx.moveTo(-15*sc,-10*sc);ctx.lineTo(18*sc,-14*sc);ctx.stroke();
+    ctx.restore();
+    ctx.save();ctx.rotate(wfR);
+    ctx.beginPath();ctx.moveTo(-10*sc,8*sc);ctx.lineTo(-20*sc,55*sc);ctx.lineTo(20*sc,85*sc);
+    ctx.bezierCurveTo(40*sc,80*sc,55*sc,60*sc,45*sc,35*sc);
+    ctx.bezierCurveTo(55*sc,25*sc,40*sc,15*sc,20*sc,12*sc);
+    ctx.bezierCurveTo(10*sc,8*sc,-5*sc,10*sc,-10*sc,8*sc);
+    ctx.fillStyle='rgba(120,10,10,0.82)';ctx.fill();ctx.strokeStyle='#8b0000';ctx.lineWidth=1.2*sc;ctx.stroke();
+    ctx.strokeStyle='rgba(180,30,30,0.6)';ctx.lineWidth=.8*sc;
+    ctx.beginPath();ctx.moveTo(-15*sc,10*sc);ctx.lineTo(18*sc,82*sc);
+    ctx.moveTo(-15*sc,10*sc);ctx.lineTo(42*sc,38*sc);
+    ctx.moveTo(-15*sc,10*sc);ctx.lineTo(18*sc,14*sc);ctx.stroke();
+    ctx.restore();
+    const bg=ctx.createRadialGradient(0,0,5*sc,0,0,35*sc);
+    bg.addColorStop(0,'#3a0a0a');bg.addColorStop(1,'#1a0404');
+    ctx.beginPath();ctx.ellipse(0,0,50*sc,22*sc,0,0,Math.PI*2);
+    ctx.fillStyle=bg;ctx.fill();ctx.strokeStyle='#8b0000';ctx.lineWidth=1.5*sc;ctx.stroke();
+    ctx.strokeStyle='rgba(180,40,40,0.4)';ctx.lineWidth=.8*sc;
+    for(let i=-3;i<=3;i++){ctx.beginPath();ctx.ellipse(i*8*sc,10*sc,5*sc,3*sc,0,0,Math.PI);ctx.stroke();}
+    ctx.beginPath();ctx.moveTo(40*sc,-5*sc);ctx.bezierCurveTo(55*sc,-12*sc,62*sc,-18*sc,68*sc,-15*sc);
+    ctx.strokeStyle='#1a0404';ctx.lineWidth=16*sc;ctx.lineCap='round';ctx.stroke();
+    ctx.strokeStyle='#8b0000';ctx.lineWidth=14*sc;ctx.stroke();
+    ctx.save();ctx.translate(72*sc,-18*sc);
+    ctx.beginPath();ctx.ellipse(0,0,18*sc,12*sc,-.3,0,Math.PI*2);
+    ctx.fillStyle='#250808';ctx.fill();ctx.strokeStyle='#8b0000';ctx.lineWidth=1.2*sc;ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-5*sc,-4*sc);ctx.bezierCurveTo(5*sc,-6*sc,22*sc,-5*sc,30*sc,-2*sc);
+    ctx.bezierCurveTo(22*sc,0,10*sc,2*sc,-5*sc,0);ctx.fillStyle='#1e0606';ctx.fill();
+    ctx.beginPath();ctx.moveTo(-5*sc,3*sc);ctx.bezierCurveTo(5*sc,5*sc,20*sc,8*sc,28*sc,5*sc);
+    ctx.bezierCurveTo(20*sc,3*sc,8*sc,2*sc,-5*sc,2*sc);ctx.fillStyle='#1e0606';ctx.fill();
+    ctx.fillStyle='#ffe0c0';
+    for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo((8+i*5)*sc,-2*sc);ctx.lineTo((10+i*5)*sc,2*sc);ctx.lineTo((12+i*5)*sc,-2*sc);ctx.fill();}
+    ctx.beginPath();ctx.arc(2*sc,-5*sc,5*sc,0,Math.PI*2);ctx.fillStyle='#ff2200';ctx.fill();
+    ctx.beginPath();ctx.arc(2*sc,-5*sc,2.5*sc,0,Math.PI*2);ctx.fillStyle='#000';ctx.fill();
+    ctx.beginPath();ctx.arc(3*sc,-6*sc,1*sc,0,Math.PI*2);ctx.fillStyle='rgba(255,255,200,0.9)';ctx.fill();
+    ctx.strokeStyle='#5a1010';ctx.lineWidth=2.5*sc;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(0,-8*sc);ctx.lineTo(-4*sc,-22*sc);ctx.moveTo(6*sc,-8*sc);ctx.lineTo(3*sc,-22*sc);ctx.stroke();
+    ctx.restore();
+    ctx.strokeStyle='#8b0000';ctx.lineWidth=4*sc;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(25*sc,18*sc);ctx.lineTo(30*sc,32*sc);ctx.lineTo(28*sc,42*sc);ctx.stroke();
+    ctx.lineWidth=2*sc;
+    for(let c=-1;c<=1;c++){ctx.beginPath();ctx.moveTo(28*sc,42*sc);ctx.lineTo((28+c*5)*sc,52*sc);ctx.stroke();}
+    ctx.lineWidth=4*sc;
+    ctx.beginPath();ctx.moveTo(-20*sc,18*sc);ctx.lineTo(-18*sc,32*sc);ctx.lineTo(-20*sc,40*sc);ctx.stroke();
+    ctx.lineWidth=2*sc;
+    for(let c=-1;c<=1;c++){ctx.beginPath();ctx.moveTo(-20*sc,40*sc);ctx.lineTo((-20+c*5)*sc,50*sc);ctx.stroke();}
     ctx.restore();
   }
 
-  function emitFlame(x, y, angle) {
-    for (let i = 0; i < 4; i++) {
-      const sp = (Math.random()-.5)*.6, speed = 6+Math.random()*8;
-      dragon.flame.push({x:x+Math.cos(angle)*52,y:y+Math.sin(angle)*52,
-        vx:Math.cos(angle+sp)*speed,vy:Math.sin(angle+sp)*speed,
-        life:1,decay:.025+Math.random()*.02,size:8+Math.random()*16});
+  function emitFlame(x,y,angle){
+    const mx=x+Math.cos(angle)*65,my=y+Math.sin(angle)*65;
+    for(let i=0;i<4;i++){
+      const sp=(Math.random()-.5)*.5,speed=6+Math.random()*8;
+      flame.push({x:mx,y:my,vx:Math.cos(angle+sp)*speed,vy:Math.sin(angle+sp)*speed,
+        life:1,decay:.028+Math.random()*.02,size:8+Math.random()*14});
     }
   }
 
-  function animate() {
-    if (!active) return;
-    animId = requestAnimationFrame(animate);
+  function drawFlame(p){
+    ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life*1.5,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,${Math.floor(100*p.life*p.life)},0,${p.life*.2})`;ctx.fill();
+    ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,${Math.floor(180*p.life*p.life)},0,${p.life*.9})`;ctx.fill();
+    ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life*.35,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,220,${p.life*.85})`;ctx.fill();
+  }
+
+  function drawStolenCursor(x,y){
+    ctx.save();ctx.translate(x,y);
+    ctx.beginPath();ctx.arc(5,8,14+Math.sin(Date.now()*.005)*4,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,80,0,0.15)';ctx.fill();
+    ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(0,18);ctx.lineTo(4,13);
+    ctx.lineTo(7,20);ctx.lineTo(9,19);ctx.lineTo(6,12);ctx.lineTo(12,12);ctx.closePath();
+    ctx.fillStyle='white';ctx.fill();ctx.strokeStyle='#333';ctx.lineWidth=1;ctx.stroke();
+    ctx.restore();
+  }
+
+  function animate(){
+    if(!active)return;
+    animId=requestAnimationFrame(animate);
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    dragon.flapping++;
-    const tx=mouse.x, ty=mouse.y;
-    const ta = Math.atan2(ty-dragon.y, tx-dragon.x);
-    let da = ta - dragon.angle;
-    while(da>Math.PI) da-=Math.PI*2;
-    while(da<-Math.PI) da+=Math.PI*2;
-    dragon.angle += da*.06;
-    dragon.vx += Math.cos(dragon.angle)*4.5*.12;
-    dragon.vy += Math.sin(dragon.angle)*4.5*.12;
-    dragon.vx *= .9; dragon.vy *= .9;
-    dragon.x += dragon.vx; dragon.y += dragon.vy;
-    if (Math.hypot(tx-dragon.x,ty-dragon.y) < 220) emitFlame(dragon.x,dragon.y,dragon.angle);
+    dr.flap++;
+
+    if(phase==='chase'){
+      const dist=Math.hypot(mouse.x-dr.x,mouse.y-dr.y);
+      const ta=Math.atan2(mouse.y-dr.y,mouse.x-dr.x);
+      let da=ta-dr.angle;
+      while(da>Math.PI)da-=Math.PI*2;while(da<-Math.PI)da+=Math.PI*2;
+      dr.angle+=da*.07;
+      dr.vx+=Math.cos(dr.angle)*5*.13;dr.vy+=Math.sin(dr.angle)*5*.13;
+      dr.vx*=.88;dr.vy*=.88;dr.x+=dr.vx;dr.y+=dr.vy;
+      if(dist<140)emitFlame(dr.x,dr.y,dr.angle);
+      if(dist<45){
+        phase='steal'; stealTimer=0; textAlpha=0;
+        document.body.style.cursor='none';
+        exitTarget={x:window.innerWidth-80,y:window.innerHeight-80};
+        for(let i=0;i<70;i++){
+          const a=Math.random()*Math.PI*2,sp=4+Math.random()*14;
+          burst.push({x:mouse.x,y:mouse.y,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,
+            life:1,decay:.013+Math.random()*.018,size:5+Math.random()*22,hue:Math.random()*50});
+        }
+      }
+    }
+
+    else if(phase==='steal'){
+      stealTimer++;
+      textAlpha=Math.min(1,stealTimer/25);
+      const ta=Math.atan2(exitTarget.y-dr.y,exitTarget.x-dr.x);
+      let da=ta-dr.angle;
+      while(da>Math.PI)da-=Math.PI*2;while(da<-Math.PI)da+=Math.PI*2;
+      dr.angle+=da*.1;
+      dr.vx+=Math.cos(dr.angle)*7*.15;dr.vy+=Math.sin(dr.angle)*7*.15;
+      dr.vx*=.86;dr.vy*=.86;dr.x+=dr.vx;dr.y+=dr.vy;
+      if(dr.flap%8===0)emitFlame(dr.x,dr.y,dr.angle);
+      stolenPos.x=dr.x+Math.cos(dr.angle)*20;
+      stolenPos.y=dr.y+Math.sin(dr.angle)*20;
+      if(Math.hypot(exitTarget.x-dr.x,exitTarget.y-dr.y)<30){
+        phase='parked'; stealTimer=0;
+        stolenPos={...exitTarget};
+        const oa=[0,Math.PI/2,Math.PI,-Math.PI/2][Math.floor(Math.random()*4)];
+        exitTarget={x:dr.x+Math.cos(oa)*2000,y:dr.y+Math.sin(oa)*2000};
+      }
+    }
+
+    else if(phase==='parked'){
+      stealTimer++;
+      const ta=Math.atan2(exitTarget.y-dr.y,exitTarget.x-dr.x);
+      let da=ta-dr.angle;
+      while(da>Math.PI)da-=Math.PI*2;while(da<-Math.PI)da+=Math.PI*2;
+      dr.angle+=da*.08;
+      dr.vx+=Math.cos(dr.angle)*8*.15;dr.vy+=Math.sin(dr.angle)*8*.15;
+      dr.vx*=.9;dr.vy*=.9;dr.x+=dr.vx;dr.y+=dr.vy;
+      const offScreen=dr.x<-200||dr.x>window.innerWidth+200||dr.y<-200||dr.y>window.innerHeight+200;
+      if(offScreen)textAlpha=Math.max(0,textAlpha-.008);
+      // Check if user brings mouse back to stolen cursor
+      if(Math.hypot(mouse.x-stolenPos.x,mouse.y-stolenPos.y)<60){
+        document.body.style.cursor='';
+        window._dragonKill(); return;
+      }
+    }
+
     // Flame
-    dragon.flame = dragon.flame.filter(p => {
-      p.x+=p.vx; p.y+=p.vy; p.vx*=.95; p.vy*=.95; p.life-=p.decay; p.size*=1.02;
-      if(p.life>0){
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
-        ctx.fillStyle=`rgba(255,${Math.floor(180*p.life*p.life)},0,${p.life*.85})`; ctx.fill();
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life*.4,0,Math.PI*2);
-        ctx.fillStyle=`rgba(255,255,200,${p.life*.7})`; ctx.fill();
-        return true;
-      } return false;
-    });
-    // Shards
-    eggShards = eggShards.filter(s => {
-      s.x+=s.vx; s.y+=s.vy; s.vy+=.3; s.rot+=s.rotV; s.life-=s.decay;
-      if(s.life>0){
-        ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(s.rot); ctx.globalAlpha=s.life;
-        ctx.beginPath(); ctx.moveTo(0,-s.r); ctx.lineTo(s.r*.8,s.r*.5); ctx.lineTo(-s.r*.8,s.r*.5);
-        ctx.closePath(); ctx.fillStyle=s.color; ctx.fill();
-        ctx.strokeStyle='#b01e1e'; ctx.lineWidth=.5; ctx.stroke();
-        ctx.restore(); return true;
-      } return false;
+    flame=flame.filter(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.vx*=.93;p.vy*=.93;p.life-=p.decay;p.size*=1.03;
+      if(p.life>0){drawFlame(p);return true;}return false;
     });
     // Burst
-    particles = particles.filter(p => {
-      p.x+=p.vx; p.y+=p.vy; p.vy+=.15; p.life-=p.decay;
+    burst=burst.filter(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.vy+=.2;p.vx*=.97;p.life-=p.decay;
       if(p.life>0){
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
-        ctx.fillStyle=`rgba(255,${Math.floor(120*p.life)},0,${p.life})`; ctx.fill();
-        return true;
-      } return false;
+        ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
+        ctx.fillStyle=`hsla(${p.hue},100%,60%,${p.life})`;ctx.fill();return true;
+      }return false;
     });
-    drawDragon(dragon.x,dragon.y,dragon.angle,dragon.flapping);
+
+    if(phase!=='vanish')drawDragon(dr.x,dr.y,dr.angle,dr.flap);
+    if(phase==='steal'||phase==='parked')drawStolenCursor(stolenPos.x,stolenPos.y);
+
+    // "YOUR CURSOR IS MINE" — fades in, stays, fades when dragon leaves
+    if(textAlpha>0){
+      ctx.save();ctx.globalAlpha=textAlpha;
+      ctx.font="bold 16px 'Cinzel',serif";ctx.textAlign='center';
+      ctx.shadowColor='#000';ctx.shadowBlur=14;
+      ctx.fillStyle='rgba(255,60,0,1)';
+      ctx.fillText('YOUR CURSOR IS MINE',window.innerWidth/2,55);
+      ctx.shadowBlur=0;ctx.restore();
+    }
+
+    // Persistent retrieval hint — always visible while parked
+    if(phase==='parked'){
+      ctx.save();
+      ctx.globalAlpha=0.8+Math.sin(Date.now()*.003)*.2;
+      ctx.font="bold 11px 'Cinzel',serif";ctx.textAlign='center';
+      ctx.shadowColor='#000';ctx.shadowBlur=8;
+      ctx.fillStyle='rgba(220,160,80,1)';
+      ctx.fillText('move your cursor to the bottom-right corner to retrieve it',window.innerWidth/2,80);
+      ctx.shadowBlur=0;ctx.restore();
+    }
   }
 
-  document.addEventListener('keydown', e => {
-    if (e.key==='Escape' && active) {
-      active=false; canvas.style.display='none';
-      cancelAnimationFrame(animId);
-      dragon.flame=[]; eggShards=[]; particles=[];
-      eggBtn.style.display=''; eggBtn.style.transform='';
-    }
-  });
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active)window._dragonKill();});
 })();
+}); // DOMContentLoaded
 
 </script>
 
 
 <!-- DRAGON EGG -->
 <div id="egg-hint">CLICK THE EGG</div>
+<div id="egg-label">🐉 click to hatch</div>
+<div id="egg-label">🐉 click to hatch</div>
 <div id="egg-btn" title="...">
   <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
     <!-- Egg body -->
