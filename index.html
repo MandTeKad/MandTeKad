@@ -394,6 +394,23 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .t-join{display:inline-block;margin-top:.8rem;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--acc);padding:.45rem 1rem;text-decoration:none;transition:background .2s;}
 .t-join:hover{background:#8b1515;}
 
+
+/* ═══ ART CAROUSELS ═══ */
+.carousel-wrap{position:relative;width:100%;overflow:hidden;background:#0a0a0a;border:1px solid var(--bord);}
+.carousel-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform;}
+.carousel-slide{min-width:100%;position:relative;display:flex;align-items:center;justify-content:center;cursor:zoom-in;}
+.carousel-slide img{max-height:520px;width:auto;max-width:100%;object-fit:contain;display:block;margin:0 auto;}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(8,8,9,.75);border:1px solid var(--bord);color:var(--pale);width:2.6rem;height:2.6rem;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;z-index:2;transition:background .2s,border-color .2s;user-select:none;}
+.carousel-btn:hover{background:var(--acc);border-color:var(--acc);}
+.carousel-btn.prev{left:.6rem;}
+.carousel-btn.next{right:.6rem;}
+.carousel-dots{display:flex;justify-content:center;gap:.45rem;padding:.75rem 0 .5rem;}
+.carousel-dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--bord);cursor:pointer;transition:background .2s;}
+.carousel-dot.active{background:var(--acc);}
+.carousel-caption{text-align:center;padding:.5rem 1rem .9rem;font-size:.8rem;color:var(--muted);font-style:italic;}
+.art-story-block{margin-bottom:2.5rem;}
+.art-story-block h3{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;}
+
 /* ═══ PROJECTS ═══ */
 #projects{background:var(--bg);}
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:1.5rem;}
@@ -663,151 +680,88 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
       <p class="sec-sub">Commissioned art for the stories. Click any piece to enlarge.</p>
     </div>
 
-    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Of Lightning and Blood</h3>
-    <div class="art-grid">
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/melkorn_character.jpg" alt="Melkorn — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Of Lightning and Blood</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">Melkorn</div>
-          <div class="art-sub">Full character commission. The Dragonborn.</div>
-        </div>
+    <div class="art-story-block">
+      <h3>Of Lightning and Blood</h3>
+      <div class="carousel-wrap" id="car-lightning" data-captions="Melkorn — Full character commission. The Dragonborn. Art by Teddxsky.|Weapons of the Dragonborn — sword and dagger displayed. Art by Tfnfe Sach.|The Sword — Melkorn's blade. Art by Tfnfe Sach.|The Dagger — Melkorn's sidearm. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/melkorn_character.jpg" alt="Melkorn — Of Lightning and Blood" loading="lazy"/>
       </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/weapons_display.jpg" alt="Weapons — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Of Lightning and Blood</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">Weapons of the Dragonborn</div>
-          <div class="art-sub">The sword and dagger, displayed together.</div>
-        </div>
+      <div class="carousel-slide">
+        <img src="art/weapons_display.jpg" alt="Weapons — Of Lightning and Blood" loading="lazy"/>
       </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/sword_solo.jpg" alt="The Sword — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Of Lightning and Blood</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Sword</div>
-          <div class="art-sub">Melkorn's blade.</div>
-        </div>
+      <div class="carousel-slide">
+        <img src="art/sword_solo.jpg" alt="The Sword — Of Lightning and Blood" loading="lazy"/>
       </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/dagger_solo.jpg" alt="The Dagger — Of Lightning and Blood" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Of Lightning and Blood</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Dagger</div>
-          <div class="art-sub">Melkorn's sidearm.</div>
-        </div>
+      <div class="carousel-slide">
+        <img src="art/dagger_solo.jpg" alt="The Dagger — Of Lightning and Blood" loading="lazy"/>
       </div>
     </div>
-
-    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Crucible</h3>
-    <div class="art-grid">
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/lightsabers_trio.jpg" alt="Vader's Lightsabers — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Crucible</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Three Configurations</div>
-          <div class="art-sub">Vader's custom lightsaber across its forms.</div>
-        </div>
-      </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/lightsaber_full.jpg" alt="Vader's Lightsaber — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Crucible</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Saber — Standard</div>
-          <div class="art-sub">Full blade, standard length.</div>
-        </div>
-      </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/lightsaber_reflected.jpg" alt="Vader's Lightsaber Reflected — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Crucible</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Saber — Reflected</div>
-          <div class="art-sub">Blade and its reflection.</div>
-        </div>
-      </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/lightsaber_shoto.jpg" alt="Vader's Shoto — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Crucible</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Shoto</div>
-          <div class="art-sub">Short blade configuration.</div>
-        </div>
-      </div>
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/lightsaber_combat.jpg" alt="Vader's Combat Saber — Crucible" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Crucible</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">The Saber — Combat Length</div>
-          <div class="art-sub">Combat configuration.</div>
-        </div>
-      </div>
+    <div class="carousel-btn prev" onclick="carouselMove('car-lightning',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-lightning',1)">&#8250;</div>
+    <div class="carousel-dots"><div class="carousel-dotactive" onclick="carouselGoto('car-lightning',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',3)"></div></div>
+  </div>
+  <div class="carousel-caption" id="car-lightning-cap">Melkorn — Full character commission. The Dragonborn. Art by Teddxsky.</div>
     </div>
 
-    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Shadow and Lightning</h3>
-    <div class="art-grid">
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/wand_harry.jpg" alt="Harry's Wand — Shadow and Lightning" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Shadow and Lightning</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">Harry's Wand</div>
-          <div class="art-sub">Commission for Shadow and Lightning.</div>
-        </div>
+    <div class="art-story-block">
+      <h3>Crucible</h3>
+      <div class="carousel-wrap" id="car-crucible" data-captions="Vader's custom lightsaber — all three configurations. Art by Tfnfe Sach.|The Saber — standard length. Art by Tfnfe Sach.|The Saber — blade and reflection. Art by Tfnfe Sach.|The Shoto — short blade configuration. Art by Tfnfe Sach.|Combat length configuration. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/lightsabers_trio.jpg" alt="Vader's Lightsabers — Crucible" loading="lazy"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_full.jpg" alt="Vader's Lightsaber — Standard" loading="lazy"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_reflected.jpg" alt="Vader's Lightsaber — Reflected" loading="lazy"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_shoto.jpg" alt="Vader's Shoto — Crucible" loading="lazy"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_combat.jpg" alt="Vader's Combat Saber — Crucible" loading="lazy"/>
       </div>
     </div>
-
-    <h3 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:2.5rem 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;">Frost and Death</h3>
-    <div class="art-grid">
-
-      <div class="art-card reveal">
-        <div class="art-preview" style="background:#0a0a0a;padding:0;position:relative;">
-          <img src="art/danny_ch8.jpg" alt="Danny — Frost and Death Ch.8" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy"/>
-          <span class="art-tag">Frost and Death</span>
-        </div>
-        <div class="art-info">
-          <div class="art-title">Danny — Chapter 8</div>
-          <div class="art-sub">Character commission. Danny as of chapter 8.</div>
-        </div>
-      </div>
+    <div class="carousel-btn prev" onclick="carouselMove('car-crucible',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-crucible',1)">&#8250;</div>
+    <div class="carousel-dots"><div class="carousel-dotactive" onclick="carouselGoto('car-crucible',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',3)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',4)"></div></div>
+  </div>
+  <div class="carousel-caption" id="car-crucible-cap">Vader's custom lightsaber — all three configurations. Art by Tfnfe Sach.</div>
     </div>
 
-    <p style="text-align:center;margin-top:2rem;font-size:.8rem;color:var(--muted);font-style:italic;">
+    <div class="art-story-block">
+      <h3>Shadow and Lightning</h3>
+      <div class="carousel-wrap" id="car-shadow" data-captions="Harry's wand — commission for Shadow and Lightning. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/wand_harry.jpg" alt="Harry's Wand — Shadow and Lightning" loading="lazy"/>
+      </div>
+    </div>
+    
+    
+  </div>
+  <div class="carousel-caption" id="car-shadow-cap">Harry's wand — commission for Shadow and Lightning. Art by Tfnfe Sach.</div>
+    </div>
+
+    <div class="art-story-block">
+      <h3>Frost and Death</h3>
+      <div class="carousel-wrap" id="car-frost" data-captions="Danny as of chapter 8 — character commission." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/danny_ch8.jpg" alt="Danny — Frost and Death Ch.8" loading="lazy"/>
+      </div>
+    </div>
+    
+    
+  </div>
+  <div class="carousel-caption" id="car-frost-cap">Danny as of chapter 8 — character commission.</div>
+    </div>
+
+    <p style="text-align:center;margin-top:1.5rem;font-size:.8rem;color:var(--muted);font-style:italic;">
       More commissions added as stories grow. Join the <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> for previews.
     </p>
   </div>
 </section>
-
-
-
 
 <!-- PATREON -->
 <section id="patreon">
@@ -1113,19 +1067,50 @@ async function handleSubscribe() {
   }
 }
 
-  // Lightbox — event delegation
-  document.addEventListener('click', e => {
-    const img = e.target.closest('.art-card img');
-    if (img) {
-      e.stopPropagation();
-      document.getElementById('lb-img').src = img.src;
-      document.getElementById('lb-img').alt = img.alt;
-      document.getElementById('lightbox').classList.add('open');
-    }
-  });
+  // Lightbox
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
   });
+  document.getElementById('lightbox').addEventListener('click', () => {
+    document.getElementById('lightbox').classList.remove('open');
+  });
+
+// Carousels
+function carouselGoto(id, idx) {
+  const wrap  = document.getElementById(id);
+  const track = wrap.querySelector('.carousel-track');
+  const slides = wrap.querySelectorAll('.carousel-slide');
+  const dots  = wrap.querySelectorAll('.carousel-dot');
+  const cap   = document.getElementById(id + '-cap');
+  const captions = wrap.dataset.captions.split('|');
+  idx = ((idx % slides.length) + slides.length) % slides.length;
+  wrap.dataset.idx = idx;
+  track.style.transform = `translateX(-${idx * 100}%)`;
+  dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+  if (cap) cap.textContent = captions[idx] || '';
+}
+function carouselMove(id, dir) {
+  const wrap = document.getElementById(id);
+  carouselGoto(id, parseInt(wrap.dataset.idx || 0) + dir);
+}
+// Swipe support
+document.querySelectorAll('.carousel-wrap').forEach(wrap => {
+  let sx = 0;
+  wrap.addEventListener('touchstart', e => sx = e.touches[0].clientX, {passive:true});
+  wrap.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 40) carouselMove(wrap.id, dx < 0 ? 1 : -1);
+  }, {passive:true});
+});
+// Click to open lightbox
+document.querySelectorAll('.carousel-slide img').forEach(img => {
+  img.addEventListener('click', e => {
+    e.stopPropagation();
+    document.getElementById('lb-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  });
+});
+
 </script>
 
 <!-- LIGHTBOX -->
