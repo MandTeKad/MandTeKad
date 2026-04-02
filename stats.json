@@ -4,7 +4,12 @@
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
-      "fandom": "Star Wars"
+      "fandom": "Star Wars",
+      "chapters": "16",
+      "words": "86,689",
+      "updated": "Recent",
+      "favs": null,
+      "follows": null
     },
     "woe": {
       "id": "14533340",
@@ -41,10 +46,10 @@
       "title": "Frost and Death",
       "fandom": "Danny Phantom",
       "chapters": "8",
-      "words": "50,241",
-      "updated": "7/16/2025",
-      "favs": "133",
-      "follows": "176"
+      "words": "50,000",
+      "updated": "Recent",
+      "favs": null,
+      "follows": null
     }
   }
 }
