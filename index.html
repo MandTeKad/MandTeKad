@@ -407,6 +407,16 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .sales-btn{flex-shrink:0;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--acc);padding:.5rem 1.1rem;text-decoration:none;white-space:nowrap;transition:background .2s;}
 .sales-btn:hover{background:#8b1515;}
 
+
+/* ═══ DRAGON EGG EASTER EGG ═══ */
+#egg-btn{position:fixed;bottom:1.4rem;left:1.4rem;width:2.8rem;height:3.2rem;cursor:pointer;z-index:8000;opacity:.55;transition:opacity .2s,transform .2s;user-select:none;}
+#egg-btn:hover{opacity:1;transform:scale(1.1);}
+#egg-btn svg{width:100%;height:100%;}
+#egg-crack{position:fixed;inset:0;z-index:8500;pointer-events:none;display:none;}
+#egg-crack canvas{position:absolute;inset:0;width:100%;height:100%;}
+#dragon-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:8001;display:none;}
+#egg-hint{position:fixed;bottom:5rem;left:1rem;font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.1em;color:var(--acc);opacity:0;transition:opacity .4s;pointer-events:none;z-index:8002;}
+
 /* ═══ ART CAROUSELS ═══ */
 .carousel-wrap{position:relative;width:100%;overflow:hidden;background:#0a0a0a;border:1px solid var(--bord);}
 .carousel-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform;}
@@ -419,7 +429,7 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .carousel-dots{display:flex;justify-content:center;gap:.45rem;padding:.75rem 0 .5rem;}
 .carousel-dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--bord);cursor:pointer;transition:background .2s;}
 .carousel-dot.active{background:var(--acc);}
-.carousel-caption{text-align:center;padding:.5rem 1rem .9rem;font-size:.8rem;color:var(--muted);font-style:italic;}
+.carousel-caption{text-align:center;padding:.5rem 1rem .9rem;font-size:1.6rem;color:var(--muted);font-style:italic;line-height:1.5;}
 .art-story-block{margin-bottom:2.5rem;}
 .art-story-block h3{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin:0 0 1rem;border-bottom:1px solid var(--bord);padding-bottom:.5rem;}
 
@@ -1134,7 +1144,209 @@ document.addEventListener('click', e => {
   }
 });
 
+// ── DRAGON EGG EASTER EGG ────────────────────────────────────────────────────
+(function() {
+  let active = false;
+  let mouse = {x: window.innerWidth/2, y: window.innerHeight/2};
+  let dragon = {x: -200, y: 300, angle: 0, vx: 0, vy: 0, flame: [], flapping: 0};
+  let particles = [];
+  let eggShards = [];
+  let animId = null;
+
+  const eggBtn = document.getElementById('egg-btn');
+  const hint = document.getElementById('egg-hint');
+  const canvas = document.getElementById('dragon-canvas');
+  const ctx = canvas.getContext('2d');
+
+  setTimeout(() => { hint.style.opacity = '.85'; }, 8000);
+  setTimeout(() => { hint.style.opacity = '0'; }, 14000);
+
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+  eggBtn.addEventListener('click', function() {
+    if (active) return;
+    active = true;
+    hint.style.opacity = '0';
+    crackEgg();
+  });
+
+  function crackEgg() {
+    eggBtn.style.transition = 'transform .05s';
+    let shakes = 0;
+    const si = setInterval(() => {
+      eggBtn.style.transform = `translate(${(Math.random()-.5)*8}px,${(Math.random()-.5)*8}px) rotate(${(Math.random()-.5)*10}deg)`;
+      shakes++;
+      if (shakes > 18) {
+        clearInterval(si);
+        eggBtn.style.display = 'none';
+        spawnShards();
+        spawnDragon();
+      }
+    }, 60);
+  }
+
+  function spawnShards() {
+    const rect = eggBtn.getBoundingClientRect();
+    const cx = rect.left + rect.width/2, cy = rect.top + rect.height/2;
+    for (let i = 0; i < 14; i++) {
+      const a = (Math.PI*2/14)*i + Math.random()*.4, sp = 3+Math.random()*6;
+      eggShards.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-3,r:4+Math.random()*8,
+        rot:Math.random()*Math.PI*2,rotV:(Math.random()-.5)*.3,life:1,decay:.018+Math.random()*.015,
+        color:['#1a0a00','#8b1515','#b01e1e','#3a1500'][Math.floor(Math.random()*4)]});
+    }
+    for (let i = 0; i < 30; i++) {
+      const a = Math.random()*Math.PI*2, sp = 2+Math.random()*8;
+      particles.push({x:cx,y:cy,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-2,life:1,decay:.02+Math.random()*.03,size:4+Math.random()*12});
+    }
+  }
+
+  function spawnDragon() {
+    const edge = Math.floor(Math.random()*4);
+    if (edge===0){dragon.x=Math.random()*window.innerWidth;dragon.y=-100;}
+    else if(edge===1){dragon.x=window.innerWidth+100;dragon.y=Math.random()*window.innerHeight;}
+    else if(edge===2){dragon.x=Math.random()*window.innerWidth;dragon.y=window.innerHeight+100;}
+    else{dragon.x=-100;dragon.y=Math.random()*window.innerHeight;}
+    dragon.angle = Math.atan2(mouse.y-dragon.y, mouse.x-dragon.x);
+    canvas.style.display = 'block';
+    animate();
+  }
+
+  function drawDragon(x, y, angle, flap) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(angle);
+    const sz = 48, wf = Math.sin(flap*.25)*.6;
+    // Body
+    ctx.beginPath(); ctx.ellipse(0,0,sz*.7,sz*.3,0,0,Math.PI*2);
+    ctx.fillStyle='#1a0800'; ctx.fill();
+    ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1.5; ctx.stroke();
+    // Head
+    ctx.beginPath(); ctx.ellipse(sz*.7,-sz*.05,sz*.28,sz*.22,.3,0,Math.PI*2);
+    ctx.fillStyle='#1a0800'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1.2; ctx.stroke();
+    // Snout
+    ctx.beginPath(); ctx.ellipse(sz*.95,-sz*.04,sz*.14,sz*.1,.2,0,Math.PI*2);
+    ctx.fillStyle='#250e00'; ctx.fill();
+    // Eye
+    ctx.beginPath(); ctx.arc(sz*.82,-sz*.12,4,0,Math.PI*2); ctx.fillStyle='#ff2200'; ctx.fill();
+    ctx.beginPath(); ctx.arc(sz*.83,-sz*.13,1.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+    // Wings top
+    ctx.beginPath(); ctx.moveTo(-sz*.1,-sz*.1);
+    ctx.bezierCurveTo(-sz*.2,-sz*(.8+wf),sz*.3,-sz*(1.1+wf),sz*.4,-sz*.4);
+    ctx.bezierCurveTo(sz*.2,-sz*.3,sz*.1,-sz*.2,-sz*.1,-sz*.1);
+    ctx.fillStyle='rgba(139,21,21,0.7)'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1; ctx.stroke();
+    // Wings bottom
+    ctx.beginPath(); ctx.moveTo(-sz*.1,sz*.1);
+    ctx.bezierCurveTo(-sz*.2,sz*(.8-wf),sz*.3,sz*(1.1-wf),sz*.4,sz*.4);
+    ctx.bezierCurveTo(sz*.2,sz*.3,sz*.1,sz*.2,-sz*.1,sz*.1);
+    ctx.fillStyle='rgba(139,21,21,0.7)'; ctx.fill(); ctx.strokeStyle='#b01e1e'; ctx.lineWidth=1; ctx.stroke();
+    // Tail
+    ctx.beginPath(); ctx.moveTo(-sz*.6,0);
+    ctx.bezierCurveTo(-sz*.9,sz*.2,-sz*1.1,sz*.5,-sz*1.0,sz*.7);
+    ctx.strokeStyle='#b01e1e'; ctx.lineWidth=5; ctx.lineCap='round'; ctx.stroke();
+    // Horns
+    ctx.beginPath();
+    ctx.moveTo(sz*.78,-sz*.18); ctx.lineTo(sz*.88,-sz*.38);
+    ctx.moveTo(sz*.88,-sz*.18); ctx.lineTo(sz*.95,-sz*.36);
+    ctx.strokeStyle='#8b1515'; ctx.lineWidth=2; ctx.stroke();
+    ctx.restore();
+  }
+
+  function emitFlame(x, y, angle) {
+    for (let i = 0; i < 4; i++) {
+      const sp = (Math.random()-.5)*.6, speed = 6+Math.random()*8;
+      dragon.flame.push({x:x+Math.cos(angle)*52,y:y+Math.sin(angle)*52,
+        vx:Math.cos(angle+sp)*speed,vy:Math.sin(angle+sp)*speed,
+        life:1,decay:.025+Math.random()*.02,size:8+Math.random()*16});
+    }
+  }
+
+  function animate() {
+    if (!active) return;
+    animId = requestAnimationFrame(animate);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    dragon.flapping++;
+    const tx=mouse.x, ty=mouse.y;
+    const ta = Math.atan2(ty-dragon.y, tx-dragon.x);
+    let da = ta - dragon.angle;
+    while(da>Math.PI) da-=Math.PI*2;
+    while(da<-Math.PI) da+=Math.PI*2;
+    dragon.angle += da*.06;
+    dragon.vx += Math.cos(dragon.angle)*4.5*.12;
+    dragon.vy += Math.sin(dragon.angle)*4.5*.12;
+    dragon.vx *= .9; dragon.vy *= .9;
+    dragon.x += dragon.vx; dragon.y += dragon.vy;
+    if (Math.hypot(tx-dragon.x,ty-dragon.y) < 220) emitFlame(dragon.x,dragon.y,dragon.angle);
+    // Flame
+    dragon.flame = dragon.flame.filter(p => {
+      p.x+=p.vx; p.y+=p.vy; p.vx*=.95; p.vy*=.95; p.life-=p.decay; p.size*=1.02;
+      if(p.life>0){
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,${Math.floor(180*p.life*p.life)},0,${p.life*.85})`; ctx.fill();
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life*.4,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,255,200,${p.life*.7})`; ctx.fill();
+        return true;
+      } return false;
+    });
+    // Shards
+    eggShards = eggShards.filter(s => {
+      s.x+=s.vx; s.y+=s.vy; s.vy+=.3; s.rot+=s.rotV; s.life-=s.decay;
+      if(s.life>0){
+        ctx.save(); ctx.translate(s.x,s.y); ctx.rotate(s.rot); ctx.globalAlpha=s.life;
+        ctx.beginPath(); ctx.moveTo(0,-s.r); ctx.lineTo(s.r*.8,s.r*.5); ctx.lineTo(-s.r*.8,s.r*.5);
+        ctx.closePath(); ctx.fillStyle=s.color; ctx.fill();
+        ctx.strokeStyle='#b01e1e'; ctx.lineWidth=.5; ctx.stroke();
+        ctx.restore(); return true;
+      } return false;
+    });
+    // Burst
+    particles = particles.filter(p => {
+      p.x+=p.vx; p.y+=p.vy; p.vy+=.15; p.life-=p.decay;
+      if(p.life>0){
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);
+        ctx.fillStyle=`rgba(255,${Math.floor(120*p.life)},0,${p.life})`; ctx.fill();
+        return true;
+      } return false;
+    });
+    drawDragon(dragon.x,dragon.y,dragon.angle,dragon.flapping);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape' && active) {
+      active=false; canvas.style.display='none';
+      cancelAnimationFrame(animId);
+      dragon.flame=[]; eggShards=[]; particles=[];
+      eggBtn.style.display=''; eggBtn.style.transform='';
+    }
+  });
+})();
+
 </script>
+
+
+<!-- DRAGON EGG -->
+<div id="egg-hint">CLICK THE EGG</div>
+<div id="egg-btn" title="...">
+  <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+    <!-- Egg body -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="#1a0a00"/>
+    <!-- Scales pattern -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#b01e1e" stroke-width="1.5" opacity=".6"/>
+    <path d="M20 20 Q25 15 30 20 Q35 15 40 20" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M15 30 Q20 25 25 30 Q30 25 35 30 Q40 25 45 30" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M14 42 Q19 37 24 42 Q29 37 34 42 Q39 37 44 42" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M17 54 Q22 49 27 54 Q32 49 37 54 Q42 49 47 54" fill="none" stroke="#8b1515" stroke-width="1" opacity=".7"/>
+    <!-- Glow -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#ff4400" stroke-width="2" opacity=".15"/>
+    <!-- Eye glint -->
+    <circle cx="30" cy="32" r="3" fill="#b01e1e" opacity=".7"/>
+    <circle cx="30" cy="32" r="1.5" fill="#ff2200" opacity=".9"/>
+    <circle cx="31" cy="31" r=".6" fill="#fff" opacity=".8"/>
+  </svg>
+</div>
+<canvas id="dragon-canvas"></canvas>
 
 <!-- LIGHTBOX -->
 <div class="lb-overlay" id="lightbox" onclick="this.classList.remove('open')">
