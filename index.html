@@ -395,6 +395,18 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .t-join:hover{background:#8b1515;}
 
 
+
+/* ═══ CHAPTER SALES CALLOUT ═══ */
+.sales-callout{background:color-mix(in srgb,var(--acc) 8%,var(--surf));border:1px solid color-mix(in srgb,var(--acc) 40%,transparent);padding:1.2rem 1.5rem;margin-bottom:2rem;}
+.sales-callout-inner{display:flex;align-items:center;gap:1.2rem;flex-wrap:wrap;}
+.sales-ico{font-size:1.6rem;flex-shrink:0;}
+.sales-callout-inner > div{flex:1;min-width:200px;}
+.sales-title{font-family:'Cinzel',serif;font-size:.85rem;font-weight:700;color:var(--pale);margin-bottom:.3rem;letter-spacing:.05em;}
+.sales-sub{font-size:.83rem;color:var(--muted);line-height:1.6;}
+.sales-sub strong{color:var(--acc);}
+.sales-btn{flex-shrink:0;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--acc);padding:.5rem 1.1rem;text-decoration:none;white-space:nowrap;transition:background .2s;}
+.sales-btn:hover{background:#8b1515;}
+
 /* ═══ ART CAROUSELS ═══ */
 .carousel-wrap{position:relative;width:100%;overflow:hidden;background:#0a0a0a;border:1px solid var(--bord);}
 .carousel-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform;}
@@ -773,6 +785,16 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
     </div>
     <div class="welcome-box reveal">
       You wanted to learn. To rise. To taste the arcane. So here you are — an apprentice standing in the shadow of something vast, muttering incantations and pretending the burn marks don't sting. You're part of the cult now. Congratulations. If you combust, try to make it dramatic enough I remember your name.
+    </div>
+    <div class="sales-callout reveal" style="margin-bottom:2rem;">
+      <div class="sales-callout-inner">
+        <span class="sales-ico">⚡</span>
+        <div>
+          <div class="sales-title">Prefer to buy once?</div>
+          <div class="sales-sub">Individual chapters are <strong>$5</strong> each. Full bundles of all available early chapters are <strong>$50–70</strong> — no recurring charge, no subscription.</div>
+        </div>
+        <a href="https://www.patreon.com/MandTeKad" target="_blank" class="sales-btn">See available chapters →</a>
+      </div>
     </div>
     <div class="tiers">
       <div class="tier reveal">
