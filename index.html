@@ -1143,7 +1143,6 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
 
 
 // ── DRAGON EGG EASTER EGG ────────────────────────────────────────────────────
-window.addEventListener('load', function() {
 (function() {
   let active=false, phase='chase';
   let mouse={x:window.innerWidth/2,y:window.innerHeight/2};
@@ -1402,7 +1401,7 @@ window.addEventListener('load', function() {
 
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active)window._dragonKill();});
 })();
-}); // load
+})();
 
 </script>
 
