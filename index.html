@@ -726,7 +726,7 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
       </div>
     </div>
     <div class="carousel-btn prev" onclick="carouselMove('car-lightning',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-lightning',1)">&#8250;</div>
-    <div class="carousel-dots"><div class="carousel-dotactive" onclick="carouselGoto('car-lightning',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',3)"></div></div>
+    <div class="carousel-dots"><div class="carousel-dot active" onclick="carouselGoto('car-lightning',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',3)"></div></div>
   </div>
   <div class="carousel-caption" id="car-lightning-cap">Melkorn — Full character commission. The Dragonborn. Art by Teddxsky.</div>
     </div>
@@ -752,7 +752,7 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
       </div>
     </div>
     <div class="carousel-btn prev" onclick="carouselMove('car-crucible',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-crucible',1)">&#8250;</div>
-    <div class="carousel-dots"><div class="carousel-dotactive" onclick="carouselGoto('car-crucible',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',3)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',4)"></div></div>
+    <div class="carousel-dots"><div class="carousel-dot active" onclick="carouselGoto('car-crucible',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',3)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',4)"></div></div>
   </div>
   <div class="carousel-caption" id="car-crucible-cap">Vader's custom lightsaber — all three configurations. Art by Tfnfe Sach.</div>
     </div>
@@ -952,6 +952,36 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
   <p class="f-sub">All rights reserved. Writing from the dark.</p>
 </footer>
 
+
+<!-- DRAGON EGG -->
+<div id="egg-hint">CLICK THE EGG</div>
+<div id="egg-label">🐉 click to hatch</div>
+<div id="egg-btn" title="...">
+  <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
+    <!-- Egg body -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="#1a0a00"/>
+    <!-- Scales pattern -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#b01e1e" stroke-width="1.5" opacity=".6"/>
+    <path d="M20 20 Q25 15 30 20 Q35 15 40 20" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M15 30 Q20 25 25 30 Q30 25 35 30 Q40 25 45 30" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M14 42 Q19 37 24 42 Q29 37 34 42 Q39 37 44 42" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
+    <path d="M17 54 Q22 49 27 54 Q32 49 37 54 Q42 49 47 54" fill="none" stroke="#8b1515" stroke-width="1" opacity=".7"/>
+    <!-- Glow -->
+    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#ff4400" stroke-width="2" opacity=".15"/>
+    <!-- Eye glint -->
+    <circle cx="30" cy="32" r="3" fill="#b01e1e" opacity=".7"/>
+    <circle cx="30" cy="32" r="1.5" fill="#ff2200" opacity=".9"/>
+    <circle cx="31" cy="31" r=".6" fill="#fff" opacity=".8"/>
+  </svg>
+</div>
+<canvas id="dragon-canvas"></canvas>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+
 <script>
 // ═══════════════════════════════════════════════════════
 //  MANDTEKAD SITE JS — clean rebuild
@@ -968,12 +998,12 @@ document.querySelectorAll('nav a[href^="#"]').forEach(a => {
     const t = document.querySelector(a.getAttribute('href'));
     if (t) { t.scrollIntoView({behavior:'smooth'}); }
     document.getElementById('hamburger')?.classList.remove('open');
-    document.getElementById('navLinks')?.classList.remove('open');
+    document.querySelector('.nav-links')?.classList.remove('open');
   });
 });
 
 const hamburger = document.getElementById('hamburger');
-const navLinks  = document.getElementById('navLinks');
+const navLinks  = document.querySelector('.nav-links');
 if (hamburger && navLinks) {
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
@@ -982,54 +1012,22 @@ if (hamburger && navLinks) {
 }
 
 // ── THEME TOGGLE ─────────────────────────────────────
-const themeBtn = document.getElementById('themeToggle');
+const themeBtn = document.getElementById('themeBtn');
 if (themeBtn) {
   themeBtn.addEventListener('click', () => {
-    document.documentElement.classList.toggle('light');
-    themeBtn.textContent = document.documentElement.classList.contains('light') ? '☀' : '☽';
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    document.documentElement.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    themeBtn.textContent = isLight ? '☀' : '☽';
   });
 }
 
 // ── REVEAL ON SCROLL ─────────────────────────────────
 const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); });
 }, {threshold: 0.08});
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// ── PARTICLES (embers) ───────────────────────────────
-(function() {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W = window.innerWidth, H = window.innerHeight;
-  canvas.width = W; canvas.height = H;
-  window.addEventListener('resize', () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  });
-  const particles = Array.from({length: 60}, () => ({
-    x: Math.random()*W, y: Math.random()*H,
-    vx: (Math.random()-.5)*.4, vy: -.3-Math.random()*.5,
-    r: .5+Math.random()*1.5, life: Math.random()
-  }));
-  function tick() {
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy; p.life -= .003;
-      if (p.life <= 0 || p.y < 0) {
-        p.x = Math.random()*W; p.y = H+5;
-        p.vx = (Math.random()-.5)*.4; p.vy = -.3-Math.random()*.5;
-        p.life = .6+Math.random()*.4;
-      }
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(176,30,30,${p.life*.6})`;
-      ctx.fill();
-    });
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
+// Particles: CSS-based embers (no canvas needed)
 
 // ── WAR SEATS ────────────────────────────────────────
 (function() {
@@ -1531,37 +1529,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbo
   });
 })();
 </script>
-
-
-
-<!-- DRAGON EGG -->
-<div id="egg-hint">CLICK THE EGG</div>
-<div id="egg-label">🐉 click to hatch</div>
-<div id="egg-btn" title="...">
-  <svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg">
-    <!-- Egg body -->
-    <ellipse cx="30" cy="38" rx="22" ry="28" fill="#1a0a00"/>
-    <!-- Scales pattern -->
-    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#b01e1e" stroke-width="1.5" opacity=".6"/>
-    <path d="M20 20 Q25 15 30 20 Q35 15 40 20" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
-    <path d="M15 30 Q20 25 25 30 Q30 25 35 30 Q40 25 45 30" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
-    <path d="M14 42 Q19 37 24 42 Q29 37 34 42 Q39 37 44 42" fill="none" stroke="#8b1515" stroke-width="1" opacity=".8"/>
-    <path d="M17 54 Q22 49 27 54 Q32 49 37 54 Q42 49 47 54" fill="none" stroke="#8b1515" stroke-width="1" opacity=".7"/>
-    <!-- Glow -->
-    <ellipse cx="30" cy="38" rx="22" ry="28" fill="none" stroke="#ff4400" stroke-width="2" opacity=".15"/>
-    <!-- Eye glint -->
-    <circle cx="30" cy="32" r="3" fill="#b01e1e" opacity=".7"/>
-    <circle cx="30" cy="32" r="1.5" fill="#ff2200" opacity=".9"/>
-    <circle cx="31" cy="31" r=".6" fill="#fff" opacity=".8"/>
-  </svg>
-</div>
-<canvas id="dragon-canvas"></canvas>
-
-<!-- LIGHTBOX -->
-<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
-  <span class="lb-close" onclick="closeLightbox()">✕</span>
-  <img id="lb-img" src="" alt=""/>
-</div>
 
 </body>
 </html>
