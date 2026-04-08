@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-07T11:32:02Z",
+  "fetched_at": "2026-04-08T11:34:30Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -8,18 +8,18 @@
       "chapters": "16",
       "words": "86,689",
       "updated": "4/1",
-      "favs": "236",
-      "follows": "302"
+      "favs": "237",
+      "follows": "303"
     },
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
       "fandom": "ASOIAF",
-      "chapters": "14",
-      "words": "65,899",
-      "updated": "4/1",
-      "favs": "433",
-      "follows": "551"
+      "chapters": "15",
+      "words": "72,281",
+      "updated": "10h",
+      "favs": "435",
+      "follows": "555"
     },
     "shadow": {
       "id": "14455132",
@@ -29,7 +29,7 @@
       "words": "97,125",
       "updated": "3/12",
       "favs": "442",
-      "follows": "581"
+      "follows": "582"
     },
     "lightning": {
       "id": "14414477",
@@ -38,8 +38,8 @@
       "chapters": "27",
       "words": "253,011",
       "updated": "12/17/2025",
-      "favs": "604",
-      "follows": "757"
+      "favs": "605",
+      "follows": "759"
     },
     "frost": {
       "id": "14436816",
