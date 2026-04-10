@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Stories — MandTeKad</title>
+  <meta name="description" content="MandTeKad — Author, IT Specialist, Swordsman."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css"/>
+  
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">MandTeKad</a>
+  <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="it-services.html">IT Services</a></li>
+      <li><a href="swordsmanship.html">Swordsmanship</a></li>
+      <li><a href="patreon.html">Patreon</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark">☀</button>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<main>
+
+<section id="stories">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">The Works</span>
+      <h2 class="sec-title">Stories</h2>
+      <p class="sec-sub">Self-inserts into broken worlds. The question is never whether to seize power — it's what you do with it, and what it costs.</p>
+    </div>
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      <span id="liveStatus">Fetching live chapter data...</span>
+    </div>
+
+    <div class="featured reveal">
+      <div class="f-vis">
+        <svg class="f-icon" viewBox="0 0 512 512" style="width:88px;height:88px"><path fill="#c01828" d="M478.89 21.842c-6.434-.113-15.047 3.628-24.242 12.822L328.912 160.4l.004-.023l-60.228 60.228l.01.01l-12.727 12.727l-.01-.01l-22.657 22.658l.01.01l-12.44 12.44l-.01-.01l-30.884 30.884q0 .008.004.014l-55.656 55.656l22.627 22.627l320.32-320.32c18.827-18.825 14.79-35.217 1.616-35.448zm-445.84.06c-13.176.232-17.213 16.623 1.614 35.45l185.912 185.912l22.658-22.66l-44.164-44.16l-.002.058L57.29 34.725C48.098 25.53 39.484 21.79 33.05 21.902m234.538 36.39c-9.308 42.14-12.624 79.314-27.922 121.454c-21.636-16.89-30.623-41.47-43.836-63.414c.586 10.88 1.66 22.256 2.42 33.838l57.71 57.71l78.485-78.485a2474 2474 0 0 1 4.078-21.237c-21.27 28.796-42.452 44.68-71.396 73.475c-6.752-45.418.278-77.923.46-123.34zM87.873 170.623q-.079.004-.082.044c-.258 5.25 104.427 78.357 96.222 83.578c-13.465 8.55-57.975 31.11-83.508 44.914c19.72-3.345 53.538-7.933 72.18-8.002l35.453-35.453l-63.655-63.652c-27.027-10.216-54.915-21.568-56.61-21.43zm245.143 56.144l-29.086 29.086l56.174 56.17c10.848.735 21.692 1.416 32.5 1.218c-24.518-15.9-71.99-43.734-71.64-50.568c.353-6.887 63.447-21.216 95.518-31.606c-27.787-2.137-55.973 3.846-83.466-4.3m-41.813 41.812l-22.656 22.656l86.437 86.438l22.627-22.627l-44.473-44.475h.06zm-35.098 35.098l-57.703 57.703c.408 14.207.21 28.454-.52 40.38c11.322-26.84 17.846-51.86 45.827-74.473c14.444 11.985 24.816 40.267 37.224 60.4c-.91-19.042-6.873-52.002-5.03-64.214l-19.8-19.797zM111.7 354.984L98.974 367.71l45.256 45.257l12.725-12.73l-45.252-45.253h-.002zm288.538.06l-45.254 45.253v.002l12.727 12.727l45.257-45.256zM94.023 385.39l-9.9 9.9l32.527 32.526l9.9-9.9zm323.893.06l-32.527 32.527l9.9 9.9l32.526-32.527l-9.9-9.9zm-346.52 22.568L21.9 457.512l32.528 32.527l10.603-10.604l10.73 10.726l17.847-17.848l-10.728-10.726l21.042-21.043l-9.9-9.9l-38.89 38.89l-12.728-12.728l38.89-38.89l-9.9-9.9zm369.15.06l-9.9 9.9l38.89 38.89l-12.73 12.728l-38.89-38.89l-9.898 9.9l49.494 49.494l32.527-32.528l-10.604-10.603l10.726-10.73l-17.848-17.847l-10.726 10.728l-21.043-21.042z"/></svg>
+        <span class="f-fandom">Star Wars Legends</span>
+        <div class="f-num">01</div>
+      </div>
+      <div class="f-body">
+        <div>
+          <div class="f-title">Crucible</div>
+          <div class="f-tl">I woke in fire. I survived Mustafar. Let's see if I can turn hell into heaven.</div>
+          <p class="f-desc">I woke in fire, in pain and agony. I survived the shores of Mustafar. I am in the hell that was Darth Vader's life. Let's see if I can turn hell into heaven.</p>
+        </div>
+        <div>
+          <div class="f-meta">
+            <div class="mi live">Chapters<strong id="crucible-ch">—</strong></div>
+            <div class="mi live">Words<strong id="crucible-w">—</strong></div>
+            <div class="mi">Rating<strong>M</strong></div>
+            <div class="mi">Published<strong>Nov 2025</strong></div>
+            <div class="mi live">Updated<strong id="crucible-upd">—</strong></div>
+          </div>
+          <div class="plats">
+            <a href="https://forum.questionablequesting.com/threads/crucible-a-vader-si.35787/" target="_blank" class="pl">QQ</a>
+            <a href="https://www.fanfiction.net/s/14526896/1/Crucible" target="_blank" class="pl">FFN</a>
+            <a href="https://forums.spacebattles.com/threads/crucible-a-vader-si.1289417/" target="_blank" class="pl">SB</a>
+            <a href="https://forums.sufficientvelocity.com/threads/crucible-a-vader-si.152486/" target="_blank" class="pl">SV</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="featured reveal">
+      <div class="f-vis">
+        <svg class="f-icon" viewBox="0 0 512 512" style="width:88px;height:88px"><path fill="#E8E0D5" d="M179.3 38.94C154.7 77.7 142.7 139.7 168.4 185.9l-16.3 9.2c-6.7-11.9-11.2-24.4-13.9-37.2c-34.5-6.3-69.42-7.5-104.98-2.1c34.07 10.1 52.77 23.7 76.68 46.7c-26.82 9.7-60.25 30.2-92.93 70.2c35.47-8.8 64.83-11.5 89.43-6.3c-36.94 22.5-64.06 56.1-88.34 114.1c35.9-17.2 64.89-18.8 102.94-18.8c-23.07 32.7-35.27 77.2-36.31 112.8c24.51-26 57.61-60.2 87.21-79c3 29.9 15 58.3 35.9 85.3c-.2-43.9 10.3-88.3 31.6-133.4c-18.8 9-32.4 18.1-49.9 29.3c6.2-27.9 12.4-55.8 18.7-83.7c-23.3 2.4-39 10-60.5 18.5c16.3-33.1 32.7-66.1 49.1-99.2l16.8 8.3l-28.4 57.4c18.4-4.4 28.7-4.1 45.7-1.3c-4.5 20.4-9 40.7-13.6 61c65.3-36.2 148.3-45.9 226.7-50c7.6-12.9 13.8-24.2 18.8-34.8l-6.3-24.4l-24.4 30.8l-7.8-27.5l-22.5 29.2l-7.5-26.1l-23.9 31.5l-7.7-28.2l-23.8 31.4l1.2-41.1l22.6-42.7l7.6 28.3l23.9-31.5l7.6 28.2l23.5-30l6.5 26.9l24.5-30.8l7.8 27.5l24.6-32c2.3-10.8 4.6-22.4 7.4-35.7c-55.5-3.7-106.3 4.8-154 9.8c-38-20.8-80.8-26.8-121.9-18.5c-13.6-29.69-27.2-59.38-40.9-89.06M325.5 158.3c-4.5 14.2-13 18.3-24.7 20.6c-16.1-4.4-28.3-15.5-34.4-30.2c20.4-3.8 42.4 3.4 59.1 9.6"/></svg>
+        <span class="f-fandom">A Song of Ice and Fire</span>
+        <div class="f-num">02</div>
+      </div>
+      <div class="f-body">
+        <div>
+          <div class="f-title">Woe to the Vanquished</div>
+          <div class="f-tl">Jon Snow was meant for the Wall. I have other plans.</div>
+          <p class="f-desc">I died content. I woke in a bastard's body, six years old, with a world I recognized and a future I refused to accept. Jon Snow was meant for the Wall. I have other plans. Dragons. Conquest. Empire. Canon derailed before it started—and somewhere in the frozen dark, the Others are still waiting. SI, major AU/EU, Valyrian empire-building.</p>
+        </div>
+        <div>
+          <div class="f-meta">
+            <div class="mi live">Chapters<strong id="woe-ch">—</strong></div>
+            <div class="mi live">Words<strong id="woe-w">—</strong></div>
+            <div class="mi">Rating<strong>M</strong></div>
+            <div class="mi">Published<strong>Dec 2025</strong></div>
+            <div class="mi live">Updated<strong id="woe-upd">—</strong></div>
+          </div>
+          <div class="plats">
+            <a href="https://forum.questionablequesting.com/threads/woe-to-the-vanquished.36187/" target="_blank" class="pl">QQ</a>
+            <a href="https://www.fanfiction.net/s/14533340/1/Woe-to-the-Vanquished" target="_blank" class="pl">FFN</a>
+            <a href="https://archiveofourown.org/works/77405946/" target="_blank" class="pl">AO3</a>
+            <a href="https://forums.spacebattles.com/threads/woe-to-the-vanquished.1289630/" target="_blank" class="pl">SB</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card reveal">
+        <div class="c-icon"><svg viewBox="0 0 512 512" style="width:48px;height:48px"><path fill="#8855cc" d="m377.154 21.04l4.06 50.167l54.32 2.856l2.677 54.306l50.173 3.898l-7.994-102.88l-103.236-8.35zM359.31 32.267L245.954 145.623l44.086 3.566l72.837-72.842l-3.566-44.08zm16.696 57.38l-72.98 72.983l2.19 41.692l41.526 2.05l73.004-73.01L417.7 91.84zm56.836 57.05l-72.457 72.46l3.433 44.213l113.24-113.237zm-196.213 16.92l7.483 92.525l-43.234-43.235c-.846 7.773-2.35 14.887-4.5 21.356l78.48 78.482c6.443-2.176 13.52-3.72 21.244-4.613l-42.5-42.5l92.203 7.164l-3.723-47.943l-54.648-2.696l-2.868-54.662l-47.94-3.877zm-48.855 88.472c-4.9 7.32-11.07 13.37-18.474 18.187l69.585 69.584c4.836-7.382 10.892-13.547 18.2-18.458l-69.31-69.312zm-36.392 26.7c-6.41 2.14-13.407 3.69-20.983 4.66l29.25 29.25l.34-.34l13.215 13.216l-.34.34l52.697 52.697c1.007-7.542 2.585-14.51 4.75-20.894zM135.53 315.01L17.09 433.094v22.17l129.348-129.348l-10.905-10.904zm24.12 24.12L17.088 481.69V495h53.73l122.35-122.35l-33.518-33.517z"/></svg></div>
+        <div class="c-fandom">Harry Potter</div>
+        <div class="c-title">Shadow and Lightning</div>
+        <div class="c-tl">This isn't the Harry Potter you know.</div>
+        <p class="c-desc">One moment, I was dying. The next, I woke up in a child's body—with a scar and a name that shouldn't be mine. This isn't the Harry Potter you know. The magic is heavier. The world is older. This world hides monsters far worse than Voldemort—and I don't plan on dying twice.</p>
+        <div class="c-meta" id="shadow-meta">Loading...</div>
+        <div class="plats">
+          <a href="https://www.fanfiction.net/s/14455132/1/Shadow-and-Lightning" target="_blank" class="pl">FFN</a>
+          <a href="https://forum.questionablequesting.com/threads/shadow-and-lightning.31792/" target="_blank" class="pl">QQ</a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="c-icon"><svg viewBox="0 0 512 512" style="width:48px;height:48px"><path fill="#c06820" d="M200.947 18.686c-6.98.087-14.64.774-22.85 1.9c27.57 20.468 51.098 45.25 67.594 70.527c1.66 0 3.312.012 4.958.047c18.066.39 35.487 2.906 53.217 7.2c-15.695-28.457-29.935-50.19-47.45-63.22c-13.817-10.278-30.063-16.168-52.52-16.454q-1.45-.02-2.948 0zm-91.66 22.96q-1.094-.002-2.195.022c-14.045.31-29.36 3.92-46.86 11.13c56.18 18.807 106.985 50.468 133.907 83.585c18.377-5.13 29.44-14.72 36.454-28.817C195.84 78.18 168.118 56.19 140.65 46.96c-10.168-3.418-20.433-5.306-31.363-5.315zm-.203 52.786c-39.42 6.758-74.73 31.854-87.822 74.19v322.345h212.73C100.352 442.58 61.19 206.49 187.115 230.104c5.838-14.164 9.92-28.027 11.018-41.465l18.627 1.522c-1.684 20.592-8.828 40.49-18.033 59.943c-.732 2.035-1.472 4.12-2.186 6.063c32.842 85.24 113.77 160.69 169.495 168.197c.915.033 1.905-.002 2.953-.09c17.016 1.035 35.86-4.222 52.21-22.304l7.984-8.83l-10.473-5.658c-6.507-3.515-14.29-7.094-18.167-10.925c-1.938-1.916-2.793-3.47-3.074-5.194c-.282-1.725-.13-4.227 2.23-8.578l10.673-19.656l-21.484 6.222c-6.304 1.825-17.305-3.032-23.224-10.71c-2.96-3.84-4.408-7.907-4.387-10.843c.02-2.938.72-5.125 4.747-8.05l19.453-14.125l-23.884-2.72c-9.974-1.137-16.37-6.658-19.17-12.294c-2.802-5.634-2.312-10.084 1.375-13.31l12.204-10.677l-15.358-5.205c-6.717-2.276-10.296-7.555-10.357-10.633c-.028-1.373.238-2.666 1.843-4.476c10.93-2.39 21.258-.45 28.088 6.374c6.154 6.146 8.35 15.128 6.977 24.832c8.55-2.254 16.985-1.616 24.112 2.494c9.34 5.387 14.647 15.692 15.67 27.965c15.212-10.132 32.152-12.725 45.262-5.164c15.467 8.92 21.36 29.513 16.805 51.75c23.992-33.355 34.588-75.717 5.617-120.43c-46.726-4.442-81.693-30.676-93.293-67.64c-5.026-16.016-21.284-28.67-42-37.904l-.08.217c-29.74-10.823-55.575-17.35-82.604-18.733l.08.155c-2.294-.093-4.56-.16-6.762-.172c-9.537 22.874-28.662 39.9-57.436 46.054l-5.906 1.262l-3.576-4.864c-14.216-19.33-41.23-40.452-74.002-58.074zm156.215 65.26c27.927-.073 44.874 11.617 42.09 44.45c-35.844 3.39-51.933-16.683-63.074-42.632c7.507-1.155 14.538-1.8 20.983-1.817zm48.407 66.363c3.708.07 7.14.994 10.014 2.812a35 35 0 0 0-4.16 3.543c-5.246 5.24-8.087 12.122-7.956 18.742c.183 9.322 5.27 17.184 12.68 22.56c-3.14 8.103-2.452 17.455 1.407 25.22c3.813 7.668 10.54 14.273 19.302 18.398c-1.445 3.366-2.375 6.862-2.4 10.33c-.062 8.407 3.38 16.042 8.273 22.39c6.792 8.81 16.862 15.936 28.026 17.91c-.183 2.18-.204 4.333.133 6.407c1.05 6.444 4.515 11.66 8.38 15.48c3.41 3.37 7.19 5.892 10.798 7.993c-6.345 4.792-12.414 7.056-18.618 7.79c-6.515-7.937-9.71-19.084-9.41-31.454c-11.767 6.177-24.21 7.156-34.12 1.44c-14.668-8.46-19.393-29.036-13.187-50.33c-11.336 2.77-22.13.92-29.187-6.132c-8.875-8.865-9.535-23.626-3.094-37.95c-3.676-.615-6.963-2.166-9.525-4.725c-8.808-8.798-5.773-26.09 6.776-38.626c7.843-7.835 17.546-11.957 25.87-11.8z"/></svg></div>
+        <div class="c-fandom">The Elder Scrolls V: Skyrim</div>
+        <div class="c-title">Of Lightning and Blood</div>
+        <div class="c-tl">Waking up in Skyrim was just the beginning.</div>
+        <p class="c-desc">Waking up in Skyrim, this self-insert follows my journey through a brutal world of war, magic, and dragons. Vampires are terrifying forces, werewolves primal beasts, and dragons gods of destruction. Over years of trials, I'll forge bonds, master power, seek immortality, and carve my legacy in blood and fire—all while reveling in the chaos.</p>
+        <div class="c-meta" id="lightning-meta">Loading...</div>
+        <div class="plats">
+          <a href="https://www.fanfiction.net/s/14414477/1/Of-Lightning-and-Blood" target="_blank" class="pl">FFN</a>
+          <a href="https://forum.questionablequesting.com/threads/of-lightning-and-blood-skyrim-si-slight-au.30077/" target="_blank" class="pl">QQ</a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="c-icon"><svg viewBox="0 0 512 512" style="width:48px;height:48px"><path fill="#5899cc" d="M373.688 22.063c-1.245-.014-2.498 0-3.75.03c-31.364.748-65.528 15.414-96.938 47.313c-88.264 89.642-154.092 171.18-242.938 174.03c23.65 18.21 54.87 31.21 85.25 36.783c-24.375 29.26-50.877 47.65-93.437 64.842c37.915 9.124 74.452 6.5 109.813-2.343c-27.29 34.35-62.118 65.85-107.47 95.78c60.376-.392 136.226-12.138 181.626-47.906c-4.842 30.69-16.186 65.125-43.22 100.47c70.74-18.73 117.115-42.386 146.595-83.533c2.905 27.513-.94 45.098-11.095 80.595c78.006-66.3 150.857-164.775 182.78-270.97C513.44 108.94 452.066 22.89 373.69 22.063zM371.03 96.47c5.76 0 11.1 1.732 15.564 4.686c-7.706.283-13.875 6.6-13.875 14.375c0 7.956 6.45 14.407 14.405 14.407c5.118 0 9.6-2.665 12.156-6.687c.028.503.033 1.022.033 1.53c0 15.633-12.648 28.314-28.282 28.314c-15.632 0-28.31-12.68-28.31-28.313c0-15.63 12.678-28.31 28.31-28.31zm67.376 34.874a28.2 28.2 0 0 1 12.438 2.875c-5.734 1.9-9.875 7.284-9.875 13.655c0 7.955 6.45 14.406 14.405 14.406c4.54 0 8.547-2.093 11.188-5.374c.086.902.156 1.826.156 2.75c0 15.632-12.68 28.313-28.314 28.313c-15.633 0-28.312-12.682-28.312-28.314s12.68-28.312 28.312-28.312zm-111.5 32.47l4.906 45.155l29.782-25.032l4.625 42.53l31.31-26.343l4.314 39.75l30.312-25.47l5.97 55.032l-43.938 36.938l-4.313-39.75l-30.313 25.47l-4.625-42.533l-31.312 26.344l-4.906-45.156l-29.783 25.03l-5.968-55.03l43.936-36.938z"/></svg></div>
+        <div class="c-fandom">Danny Phantom</div>
+        <div class="c-title">Frost and Death</div>
+        <div class="c-tl">The Ghost Zone doesn't care about your backstory.</div>
+        <p class="c-desc">One moment, I was dying—beaten, broken, bleeding out. The next, I was electrocuted, my body burning. Now, I wake up too young, too weak, too wrong. The body in the mirror isn't mine, but the world around me doesn't care. And the ghosts? They aren't what I remember. Ancient, vicious monsters lurk here. This isn't a cartoon. This is reality.</p>
+        <div class="c-meta" id="frost-meta">Loading...</div>
+        <div class="plats">
+          <a href="https://www.fanfiction.net/s/14436816/1/Frost-and-Death" target="_blank" class="pl">FFN</a>
+          <a href="https://forum.questionablequesting.com/threads/frost-and-death-a-danny-phantom-si.30885/" target="_blank" class="pl">QQ</a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="c-icon"><svg viewBox="0 0 512 512" style="width:48px;height:48px"><path fill="#a89880" d="M425.344 22.22c-9.027.085-18.7 5.826-24.344 19.405c-11.143 26.803-31.93 59.156-58.563 93.47a141.2 141.2 0 0 1 27.5 30.31c35.1-26.57 68.882-46.81 98.125-56.75c44.6-15.16 12.02-69.72-35.343-35.343c26.91-27.842 11.107-51.27-7.376-51.093zm-341.22.03c-18.5.378-37.604 23.962-16.343 49.875C31.523 38.635-.802 85.48 37.095 102.813c28.085 12.844 62.54 35.66 99.062 64.343c8.125-12.5 18.207-23.61 29.78-32.937c-26.782-35.743-48.44-69.835-61.78-98.47c-4.515-9.69-12.22-13.66-20.03-13.5zm169.5 99.688c-67.104 0-121.31 54.21-121.31 121.312c0 44.676 24.04 83.613 59.905 104.656v56.406h18.718v-47.468a120 120 0 0 0 16.093 4.78v42.688h18.69v-40.03a124 124 0 0 0 15.749 0v40.03h18.686v-42.687a121 121 0 0 0 16.094-4.78v47.467h18.688V347.97c35.92-21.03 60-60.003 60-104.72c0-67.105-54.208-121.313-121.313-121.313zm-66.874 88.218c19.88 0 36 16.12 36 36s-16.12 36-36 36s-36-16.12-36-36s16.12-36 36-36m133.563 0c19.878 0 36 16.12 36 36s-16.122 36-36 36c-19.88 0-36-16.12-36-36s16.12-36 36-36m-66.72 52.344l29.938 48.188h-59.874l29.938-48.188zm-107.28 70.563c-40.263 32.472-78.546 58.41-109.22 72.437c-37.896 17.334-5.57 64.146 30.688 30.656c-30.237 36.854 21.167 69.05 36.376 36.406c15.072-32.352 40.727-71.7 72.438-112.5a141 141 0 0 1-30.28-27zm213.156 1.718a141 141 0 0 1-27.908 24.69c31.846 39.39 56.82 76.862 69.438 107.217c17.203 41.383 71.774 9.722 31.72-31.718c47.363 34.376 79.94-20.185 35.342-35.345c-32.146-10.926-69.758-34.3-108.593-64.844z"/></svg></div>
+        <div class="c-fandom">Warhammer 40,000</div>
+        <div class="c-title">Broken Flesh, Enduring Spirit</div>
+        <div class="c-tl">Two souls. One Imperium at its worst hour.</div>
+        <p class="c-desc">996.M36. The Age of Apostasy. Two Earth-born souls woke in the Imperium seventeen years ago. One became a Commissar. One became a Tech-Priest. Let's see where this goes. Human-scale grimdark. No power fantasy.</p>
+        <div class="c-meta">New · Active</div>
+        <div class="plats">
+          <a href="https://forums.spacebattles.com/threads/broken-flesh-enduring-spirit-warhammer-40k-dual-si-commissar-tech-priest-age-of-apostasy.1297695/" target="_blank" class="pl">SB</a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <div class="c-icon"><svg viewBox="0 0 512 512" style="width:48px;height:48px"><path fill="#aa2010" d="M215.125 17.188C142.557 18.134 72.68 64.075 40.187 132.25c-56.91 119.42 7.05 260.175 122.313 314.406c53.513 25.185 114.67 31.57 172.563 19.78l9.625 21.845l152.75-34.03c-.64-13.024-1.892-29.087-3.407-45.97a41.7 41.7 0 0 1-14.655 15.5c-19.667 12.21-45.51 6.137-57.72-13.53c-12.208-19.667-6.165-45.51 13.5-57.72a41.77 41.77 0 0 1 21.69-6.28c12.278-.118 24.32 5.173 32.53 15a5051 5051 0 0 0-8.03-70.97c-58.49 31.19-115.34 47.06-174.47 60.408v-.375c-46.538 12.515-126.428 1.26-156.5-30.22c18.292 40.602 81.708 65.04 149.313 65.844l8.343 18.938c-24.334 9.436-50.313 14.416-76.374 14.313l-14.22-17.97L194.72 415.5a188.3 188.3 0 0 1-37.69-11.72l-9.56-23.186l-23.876 4.656a192 192 0 0 1-20.375-16.28l-.564-24.126l-26.344-6.5a179 179 0 0 1-10.187-16.406L74.97 295l-23.657-9.47A164 164 0 0 1 47 264.72l13.875-21.564l-14.125-21.844c.057-.448.095-.894.156-1.343c.87-6.424 2.175-12.74 3.844-18.94l20.188-13.25l-6.594-20.686c3.268-6 6.91-11.757 10.906-17.25l25.688-5.406l3.093-24.625c5.754-4.555 11.836-8.695 18.19-12.313l22.718 6.78l9.812-20.124c9.6-2.523 19.57-3.957 29.78-4.187l20.845 15.25l20.063-9.376c50.687 16.437 88.647 65.967 80.53 121.594c-2.905 19.914-12.198 38.33-25.437 52.437c3.03-20.242-10.88-43.178-35.092-55c-28.472-13.902-60.35-7.162-71.188 15.03c-10.836 22.194 3.466 51.443 31.938 65.345a73 73 0 0 0 14.125 5.188c57.96 18.97 121.378-12.46 147.593-66.063c36.94-75.536-3.372-165.134-76.125-200.22c-23.733-11.444-48.587-16.803-73.186-16.968c-1.153-.007-2.317-.015-3.47 0zM396.47 348.375l-1.626 37.188l-60.53-10.657z"/></svg></div>
+        <div class="c-fandom">A Song of Ice and Fire &nbsp;&middot;&nbsp; Complete</div>
+        <div class="c-title">Peace in Death</div>
+        <div class="c-tl">The last dance above the Gods Eye.</div>
+        <p class="c-desc">Daemon Targaryen; what man of House Targaryen was more reviled, more celebrated? Prince, kinslayer, rogue, rider of the Blood Wyrm — his name burned through the years as both curse and prayer. Follow his final moments above the Gods Eye, the last dance of fire and fury between Caraxes and Vhagar.</p>
+        <div class="c-meta">Complete · One Shot</div>
+        <div class="plats">
+          <a href="https://www.fanfiction.net/s/14522262/1/" target="_blank" class="pl">FFN</a>
+        </div>
+      </div>
+    </div>
+    </div>
+</section>
+
+
+<!-- ART -->
+<section id="art">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">Commissioned Works</span>
+      <h2 class="sec-title">Art</h2>
+      <p class="sec-sub">Commissioned art for the stories. Click any piece to enlarge.</p>
+    </div>
+
+    <div class="art-story-block">
+      <h3>Of Lightning and Blood</h3>
+      <div class="carousel-wrap" id="car-lightning" data-captions="Melkorn — Full character commission. The Dragonborn. Art by Teddxsky.|Weapons of the Dragonborn — sword and dagger displayed. Art by Tfnfe Sach.|The Sword — Melkorn's blade. Art by Tfnfe Sach.|The Dagger — Melkorn's sidearm. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/melkorn_character.jpg" alt="Melkorn — Of Lightning and Blood" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/weapons_display.jpg" alt="Weapons — Of Lightning and Blood" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/sword_solo.jpg" alt="The Sword — Of Lightning and Blood" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/dagger_solo.jpg" alt="The Dagger — Of Lightning and Blood" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+    </div>
+    <div class="carousel-btn prev" onclick="carouselMove('car-lightning',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-lightning',1)">&#8250;</div>
+    <div class="carousel-dots"><div class="carousel-dot active" onclick="carouselGoto('car-lightning',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-lightning',3)"></div></div>
+  </div>
+  <div class="carousel-caption" id="car-lightning-cap">Melkorn — Full character commission. The Dragonborn. Art by Teddxsky.</div>
+    </div>
+
+    <div class="art-story-block">
+      <h3>Crucible</h3>
+      <div class="carousel-wrap" id="car-crucible" data-captions="Vader's custom lightsaber — all three configurations. Art by Tfnfe Sach.|The Saber — standard length. Art by Tfnfe Sach.|The Saber — blade and reflection. Art by Tfnfe Sach.|The Shoto — short blade configuration. Art by Tfnfe Sach.|Combat length configuration. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/lightsabers_trio.jpg" alt="Vader's Lightsabers — Crucible" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_full.jpg" alt="Vader's Lightsaber — Standard" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_reflected.jpg" alt="Vader's Lightsaber — Reflected" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_shoto.jpg" alt="Vader's Shoto — Crucible" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+      <div class="carousel-slide">
+        <img src="art/lightsaber_combat.jpg" alt="Vader's Combat Saber — Crucible" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+    </div>
+    <div class="carousel-btn prev" onclick="carouselMove('car-crucible',-1)">&#8249;</div><div class="carousel-btn next" onclick="carouselMove('car-crucible',1)">&#8250;</div>
+    <div class="carousel-dots"><div class="carousel-dot active" onclick="carouselGoto('car-crucible',0)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',1)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',2)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',3)"></div><div class="carousel-dot" onclick="carouselGoto('car-crucible',4)"></div></div>
+  </div>
+  <div class="carousel-caption" id="car-crucible-cap">Vader's custom lightsaber — all three configurations. Art by Tfnfe Sach.</div>
+    </div>
+
+    <div class="art-story-block">
+      <h3>Shadow and Lightning</h3>
+      <div class="carousel-wrap" id="car-shadow" data-captions="Harry's wand — commission for Shadow and Lightning. Art by Tfnfe Sach." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/wand_harry.jpg" alt="Harry's Wand — Shadow and Lightning" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+    </div>
+    
+    
+  </div>
+  <div class="carousel-caption" id="car-shadow-cap">Harry's wand — commission for Shadow and Lightning. Art by Tfnfe Sach.</div>
+    </div>
+
+    <div class="art-story-block">
+      <h3>Frost and Death</h3>
+      <div class="carousel-wrap" id="car-frost" data-captions="Danny as of chapter 8 — character commission." data-idx="0">
+    <div class="carousel-track">
+      <div class="carousel-slide">
+        <img src="art/danny_ch8.jpg" alt="Danny — Frost and Death Ch.8" loading="lazy" onclick="openLightbox(this)" style="cursor:zoom-in;"/>
+      </div>
+    </div>
+    
+    
+  </div>
+  <div class="carousel-caption" id="car-frost-cap">Danny as of chapter 8 — character commission.</div>
+    </div>
+
+    <p style="text-align:center;margin-top:1.5rem;font-size:.8rem;color:var(--muted);font-style:italic;">
+      More commissions added as stories grow. Join the <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> for previews.
+    </p>
+  </div>
+</section>
+
+
+
+</main>
+<footer style="text-align:center;padding:2rem 1rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--bord);margin-top:4rem;">
+  <p>© 2026 MandTeKad &nbsp;·&nbsp; <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> &nbsp;·&nbsp; <a href="https://www.patreon.com/MandTeKad" target="_blank" style="color:var(--acc);text-decoration:none;">Patreon</a></p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

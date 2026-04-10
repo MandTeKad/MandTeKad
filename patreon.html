@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Patreon — MandTeKad</title>
+  <meta name="description" content="MandTeKad — Author, IT Specialist, Swordsman."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">MandTeKad</a>
+  <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="it-services.html">IT Services</a></li>
+      <li><a href="swordsmanship.html">Swordsmanship</a></li>
+      <li><a href="patreon.html">Patreon</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark">☀</button>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<main>
+<div style="padding-top:5rem;">
+<!-- PATREON -->
+<section id="patreon">
+  <div class="wrap p-inner">
+    <div class="sec-head">
+      <span class="sec-tag">The Cult</span>
+      <h2 class="sec-title">Patreon</h2>
+      <p class="sec-sub">Early chapters, the full vault, and a seat at the table.</p>
+    </div>
+    <div class="welcome-box reveal">
+      You wanted to learn. To rise. To taste the arcane. So here you are — an apprentice standing in the shadow of something vast, muttering incantations and pretending the burn marks don't sting. You're part of the cult now. Congratulations. If you combust, try to make it dramatic enough I remember your name.
+    </div>
+    <div class="sales-callout reveal" style="margin-bottom:2rem;">
+      <div class="sales-callout-inner">
+        <span class="sales-ico">⚡</span>
+        <div>
+          <div class="sales-title">Prefer to buy once?</div>
+          <div class="sales-sub">Individual chapters are <strong>$5</strong> each. Full bundles of all available early chapters are <strong>$50–70</strong> — no recurring charge, no subscription.</div>
+        </div>
+        <a href="https://www.patreon.com/MandTeKad" target="_blank" class="sales-btn">See available chapters →</a>
+      </div>
+    </div>
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="t-price">$5<span class="t-per"> / mo</span></div>
+        <div class="t-name">Apprentice of Winterhold</div>
+        <div class="t-quote">"Power and knowledge are granted to those who seek it."</div>
+        <ul class="t-perks"><li>2 chapters ahead</li><li>Discord benefits</li></ul>
+        <div class="t-members">30 members</div>
+        <a href="https://www.patreon.com/checkout/MandTeKad?rid=24532250&vanity=13224044" target="_blank" class="t-join">Join this tier →</a>
+      </div>
+      <div class="tier hl reveal">
+        <div class="t-price">$15<span class="t-per"> / mo</span></div>
+        <div class="t-name">Housecarl</div>
+        <div class="t-quote">"The strength of the sword lies in the hand that wields it."</div>
+        <ul class="t-perks"><li>All previous</li><li>3 chapters ahead</li><li>Discord benefits</li></ul>
+        <div class="t-members">15 members</div>
+        <a href="https://www.patreon.com/checkout/MandTeKad?rid=24532276&vanity=13224044" target="_blank" class="t-join">Join this tier →</a>
+      </div>
+      <div class="tier reveal">
+        <div class="t-price">$30<span class="t-per"> / mo</span></div>
+        <div class="t-name">Thane</div>
+        <div class="t-quote">"Loyalty and valor are the cornerstones of a true leader."</div>
+        <ul class="t-perks"><li>All previous</li><li>4 chapters ahead</li><li>Name as minor NPC or location</li><li>Access to commissioned fanart</li></ul>
+        <div class="t-members">6 members</div>
+        <a href="https://www.patreon.com/checkout/MandTeKad?rid=24532299&vanity=13224044" target="_blank" class="t-join">Join this tier →</a>
+      </div>
+      <div class="tier reveal">
+        <div class="t-price">$50<span class="t-per"> / mo</span></div>
+        <div class="t-name">Daedric Champion</div>
+        <div class="t-quote">"You walk the path of power and ambition, shaping fate with your will."</div>
+        <ul class="t-perks"><li>All previous</li><li>5 chapters ahead</li><li>Hall of Heroes listing</li><li>Large-scale commissioned art</li></ul>
+        <div class="t-members">13 members</div>
+        <a href="https://www.patreon.com/checkout/MandTeKad?rid=24532330&vanity=13224044" target="_blank" class="t-join">Join this tier →</a>
+      </div>
+      <div class="tier tier-war reveal">
+        <div class="t-price">$75<span class="t-per"> / mo</span></div>
+        <div class="t-name" style="color:var(--gold)">Seat at the War Table</div>
+        <div class="t-quote">"Thirteen seats. My personal table — sit and drink deep from the mead horn."</div>
+        <div class="war-seats" id="warSeats"></div>
+        <a href="https://www.patreon.com/checkout/MandTeKad?rid=25815818&vanity=13224044" target="_blank" class="t-join">Claim a seat →</a>
+        <ul class="t-perks">
+          <li>All previous benefits</li>
+          <li>The full vault — raw Google Docs access to everything</li>
+          <li>All ahead chapters across every active story, not just the public advance</li>
+          <li>Every lore document: world-bibles, magic systems, faction docs, timelines</li>
+          <li>Ship designs, story outlines, character sheets, unreleased concepts</li>
+          <li>Behind-the-scenes on how every world gets built</li>
+          <li>Listed as High General</li>
+        </ul>
+        <div class="t-members" style="color:var(--gold)">13 seats · 13 available</div>
+      </div>
+    </div>
+    <div class="tc">
+      <a href="https://www.patreon.com/c/MandTeKad" target="_blank" class="btn btn-r">Join on Patreon →</a>
+    </div>
+  </div>
+</section>
+
+
+</div>
+</main>
+<footer style="text-align:center;padding:2rem 1rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--bord);margin-top:4rem;">
+  <p>© 2026 MandTeKad &nbsp;·&nbsp; <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> &nbsp;·&nbsp; <a href="https://www.patreon.com/MandTeKad" target="_blank" style="color:var(--acc);text-decoration:none;">Patreon</a></p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

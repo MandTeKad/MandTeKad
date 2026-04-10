@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Projects — MandTeKad</title>
+  <meta name="description" content="MandTeKad — Author, IT Specialist, Swordsman."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">MandTeKad</a>
+  <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="it-services.html">IT Services</a></li>
+      <li><a href="swordsmanship.html">Swordsmanship</a></li>
+      <li><a href="patreon.html">Patreon</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark">☀</button>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<main>
+
+<div class="wrap" style="padding-top:6rem;">
+  <div class="page-hero">
+    <span class="pg-tag">Side Projects</span>
+    <h1>Projects</h1>
+    <p class="sub">Things built alongside the writing and the work.</p>
+  </div>
+
+  <div class="proj-grid reveal">
+    <a href="https://mandtekad.github.io/Cookbook/" target="_blank" class="proj-card">
+      <div class="proj-preview proj-preview-cook">
+        <span class="proj-icon">🍖</span>
+        <span class="proj-tag">Real World</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">The High Protein Cookbook</div>
+        <p class="proj-desc">37 high-protein recipes across six sections — batch crockpot builds, fresh 15-minute meals, six ways to cook pork tenderloin, fast breakfasts, snacks, and dessert. 200g+ protein per day, ~$100 per week. Built for people who want to eat well without overthinking it.</p>
+        <span class="proj-link">Open the cookbook →</span>
+      </div>
+    </a>
+    <a href="https://mandtekad.github.io/Vader-s-Surgery-and-Suit-Logs/" target="_blank" class="proj-card">
+      <div class="proj-preview proj-preview-lore">
+        <span class="proj-icon">⚫</span>
+        <span class="proj-tag">Crucible · Lore</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Imperial Medical File E-3778Q-1</div>
+        <p class="proj-desc">The classified document behind Star Wars. Lord Vader's full reconstruction record — surgical logs, suit specifications, respirator schematics, life support systems, combat profile, and Imperial maintenance directives. Fully Legends-compliant. Level Aurek clearance required.</p>
+        <span class="proj-link">Access the archive →</span>
+      </div>
+    </a>
+    <a href="https://shookdylan.gumroad.com/l/gospel-of-swordsmanship" target="_blank" class="proj-card">
+      <div class="proj-preview proj-preview-hema">
+        <span class="proj-icon">⚔️</span>
+        <span class="proj-tag">HEMA · Real World</span>
+      </div>
+      <div class="proj-body">
+        <div class="proj-title">Gospel of Swordsmanship Vol. I</div>
+        <p class="proj-desc">250 pages. Six weapon systems. Built for the practitioner with no club in their town. German longsword as the core system — plus messer, rapier, rapier &amp; dagger, saber, and dagger.</p>
+        <span class="proj-link">Get the book — $35 →</span>
+      </div>
+    </a>
+  </div>
+  <p class="reveal" style="text-align:center;margin-top:2rem;font-size:.82rem;color:var(--muted);font-style:italic;">More projects incoming — compound build documentation, forge work, and HEMA content planned for 2027.</p>
+</div>
+
+</main>
+<footer style="text-align:center;padding:2rem 1rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--bord);margin-top:4rem;">
+  <p>© 2026 MandTeKad &nbsp;·&nbsp; <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> &nbsp;·&nbsp; <a href="https://www.patreon.com/MandTeKad" target="_blank" style="color:var(--acc);text-decoration:none;">Patreon</a></p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

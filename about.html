@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>About — MandTeKad</title>
+  <meta name="description" content="MandTeKad — Author, IT Specialist, Swordsman."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap"/>
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="stylesheet" href="style.css"/>
+  
+</head>
+<body>
+<nav id="nav">
+  <a href="index.html" class="nav-brand">MandTeKad</a>
+  <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="stories.html">Stories</a></li>
+      <li><a href="it-services.html">IT Services</a></li>
+      <li><a href="swordsmanship.html">Swordsmanship</a></li>
+      <li><a href="patreon.html">Patreon</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeBtn" aria-label="Toggle light/dark">☀</button>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lightbox" onclick="closeLightbox()">
+  <span class="lb-close" onclick="closeLightbox()">✕</span>
+  <img id="lb-img" src="" alt=""/>
+</div>
+<main>
+
+<div class="wrap" style="padding-top:6rem;max-width:800px;">
+  <div class="page-hero">
+    <span class="pg-tag">About</span>
+    <h1>Dylan Shook</h1>
+    <p class="sub">MandTeKad online.</p>
+  </div>
+
+  <div class="reveal" style="background:var(--surf);border:1px solid var(--bord);padding:2.5rem;font-size:1rem;line-height:1.9;color:var(--ash);margin-bottom:2rem;">
+    <p style="margin-bottom:1.2rem;">I write dark self-insert fanfiction. I teach swordsmanship. I fix computers for a living. I'm a Norse pagan building toward a homestead in the woods.</p>
+    <p style="margin-bottom:1.2rem;">530,000+ words published across Star Wars, ASOIAF, Warhammer 40k, Harry Potter, Skyrim, and Danny Phantom. 4,000+ community members across platforms.</p>
+    <p style="margin-bottom:1.2rem;">Published author of <em>The Gospel of Swordsmanship</em> — a 35,000-word field manual covering six weapon systems, built for the solo practitioner.</p>
+    <p style="margin-bottom:1.2rem;">3+ years enterprise IT specialist. ServiceNow, Active Directory, Microsoft 365. Now freelance — local and remote support, no contracts.</p>
+    <p style="margin-bottom:1.5rem;">Based in Kokomo, Indiana. Working toward 87 acres in West Virginia.</p>
+    <p style="color:var(--pale);font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.05em;border-top:1px solid var(--bord);padding-top:1.2rem;">Everything I build costs something. That's the point.</p>
+  </div>
+
+  <div class="reveal">
+    <h2 style="font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:1rem;">Find Me Online</h2>
+    <div class="social-links">
+      <a href="https://www.patreon.com/MandTeKad" target="_blank" class="social-link">Patreon</a>
+      <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" class="social-link">Discord</a>
+      <a href="https://forum.questionablequesting.com/members/mandtekad.111942/" target="_blank" class="social-link">QQ</a>
+      <a href="https://forums.spacebattles.com/members/mandtekad.677660/" target="_blank" class="social-link">SpaceBattles</a>
+      <a href="https://forums.sufficientvelocity.com/members/mandtekad.121783/" target="_blank" class="social-link">SV</a>
+      <a href="https://archiveofourown.org/users/MandTeKad" target="_blank" class="social-link">AO3</a>
+      <a href="https://www.fanfiction.net/u/MandTeKad" target="_blank" class="social-link">FFN</a>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer style="text-align:center;padding:2rem 1rem;font-size:.75rem;color:var(--muted);border-top:1px solid var(--bord);margin-top:4rem;">
+  <p>© 2026 MandTeKad &nbsp;·&nbsp; <a href="https://discord.gg/KcZNQ9HSZW" target="_blank" style="color:var(--acc);text-decoration:none;">Discord</a> &nbsp;·&nbsp; <a href="https://www.patreon.com/MandTeKad" target="_blank" style="color:var(--acc);text-decoration:none;">Patreon</a></p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
