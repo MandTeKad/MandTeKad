@@ -27,6 +27,13 @@ if (hamburger) {
     hamburger.classList.toggle('open');
     navLinks?.classList.toggle('open');
   });
+  // Close nav when a link is tapped on mobile
+  navLinks?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
 }
 
 // ── THEME TOGGLE ──────────────────────

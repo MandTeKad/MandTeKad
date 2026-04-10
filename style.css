@@ -459,7 +459,27 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
    RESPONSIVE
 ═══════════════════════════════════ */
 @media(max-width:900px){
-  .nav-links{display:none;}
+  .nav-links{
+    display:none;
+    position:fixed;top:var(--nav-h,56px);left:0;right:0;
+    background:var(--bg2);
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    padding:.5rem 0;
+    border-bottom:1px solid var(--bord);
+    z-index:999;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{width:100%;}
+  .nav-links li a{
+    display:block;
+    padding:.85rem 1.5rem;
+    font-size:.95rem;
+    border-bottom:1px solid var(--bord);
+    width:100%;
+  }
+  .nav-links li:last-child a{border-bottom:none;}
   .hamburger{display:flex;}
 }
 @media(max-width:700px){
