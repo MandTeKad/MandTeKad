@@ -103,10 +103,10 @@ document.querySelectorAll('.carousel-wrap').forEach(wrap => {
 
 // ── STATS (stories page only) ─────────
 const FALLBACKS = {
-  crucible:  {chapters:'16',  words:'86,689',  updated:'Apr 2026'},
-  woe:       {chapters:'14',  words:'65,899',  updated:'Apr 2026'},
-  shadow:    {chapters:'20',  words:'97,125',  updated:'Mar 2026'},
-  lightning: {chapters:'27',  words:'253,011', updated:'Dec 2025'},
+  crucible:  {chapters:'17',  words:'91,325',  updated:'Apr 2026'},
+  woe:       {chapters:'15',  words:'72,281',  updated:'Apr 2026'},
+  shadow:    {chapters:'21',  words:'100,335', updated:'Apr 2026'},
+  lightning: {chapters:'28',  words:'261,036', updated:'Apr 2026'},
   frost:     {chapters:'8',   words:'50,241',  updated:'Jul 2025'},
 };
 function setEl(id, val) {

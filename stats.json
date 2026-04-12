@@ -1,30 +1,45 @@
 {
-  "fetched_at": "2026-04-12T10:10:08Z",
+  "fetched_at": "2026-04-12T00:00:00Z",
   "stories": {
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
-      "fandom": "Star Wars"
+      "fandom": "Star Wars",
+      "chapters": "17",
+      "words": "91,325",
+      "updated": "Apr 2026"
     },
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
-      "fandom": "ASOIAF"
+      "fandom": "ASOIAF",
+      "chapters": "15",
+      "words": "72,281",
+      "updated": "Apr 2026"
     },
     "shadow": {
       "id": "14455132",
       "title": "Shadow and Lightning",
-      "fandom": "Harry Potter"
+      "fandom": "Harry Potter",
+      "chapters": "21",
+      "words": "100,335",
+      "updated": "Apr 2026"
     },
     "lightning": {
       "id": "14414477",
       "title": "Of Lightning and Blood",
-      "fandom": "Skyrim"
+      "fandom": "Skyrim",
+      "chapters": "28",
+      "words": "261,036",
+      "updated": "Apr 2026"
     },
     "frost": {
       "id": "14436816",
       "title": "Frost and Death",
-      "fandom": "Danny Phantom"
+      "fandom": "Danny Phantom",
+      "chapters": "8",
+      "words": "50,241",
+      "updated": "Jul 2025"
     }
   }
 }
