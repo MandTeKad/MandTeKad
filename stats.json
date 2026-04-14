@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-13T11:57:31Z",
+  "fetched_at": "2026-04-14T11:42:20Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -9,12 +9,7 @@
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
-      "fandom": "ASOIAF",
-      "chapters": "15",
-      "words": "72,281",
-      "updated": "4/7",
-      "favs": "462",
-      "follows": "577"
+      "fandom": "ASOIAF"
     },
     "shadow": {
       "id": "14455132",
@@ -22,9 +17,9 @@
       "fandom": "Harry Potter",
       "chapters": "21",
       "words": "100,335",
-      "updated": "14h",
+      "updated": "4/12",
       "favs": "446",
-      "follows": "587"
+      "follows": "588"
     },
     "lightning": {
       "id": "14414477",
@@ -33,8 +28,8 @@
       "chapters": "28",
       "words": "261,036",
       "updated": "4/10",
-      "favs": "609",
-      "follows": "764"
+      "favs": "610",
+      "follows": "765"
     },
     "frost": {
       "id": "14436816",
