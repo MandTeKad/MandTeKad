@@ -12,7 +12,7 @@
   --ember:   #e8541a;
   --ash:     #c8bdb0;
   --pale:    #e8e0d5;
-  --muted:   #6b5f56;
+  --muted:   #8a7a70;
   --gold:    #9a7235;
   --tog-bg:  #1e1a1a;
   --tog-ico: "☀";
@@ -41,7 +41,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{
   background:var(--bg);color:var(--ash);
   font-family:'EB Garamond',Georgia,serif;
-  font-size:clamp(16px,2.2vw,18px);
+  font-size:clamp(17px,2.4vw,20px);
   line-height:1.7;overflow-x:hidden;
   transition:background .3s,color .3s;
 }
@@ -74,7 +74,7 @@ nav.scrolled{
 .nav-right{display:flex;align-items:center;gap:1.5rem;}
 .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center;}
 .nav-links a{
-  font-family:'Cinzel',serif;font-size:.82rem;letter-spacing:.1em;
+  font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.08em;
   text-transform:uppercase;color:var(--muted);transition:color .2s;
   white-space:nowrap;
 }
@@ -476,8 +476,8 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
   .nav-links li{width:100%;}
   .nav-links li a{
     display:block;
-    padding:.9rem 1.5rem;
-    font-size:.9rem;
+    padding:1rem 1.5rem;
+    font-size:1rem;
     letter-spacing:.06em;
     border-bottom:1px solid var(--bord);
     color:var(--pale);
@@ -514,20 +514,20 @@ footer{padding:2.2rem 1.5rem;text-align:center;border-top:1px solid var(--bord);
 .page-hero { padding: 5rem 0 3rem; text-align: center; }
 .page-hero .pg-tag { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.25em; text-transform:uppercase; color:var(--acc); display:block; margin-bottom:.8rem; }
 .page-hero h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(2rem,6vw,3.5rem); color:var(--pale); margin-bottom:.8rem; }
-.page-hero .sub { font-size:1.1rem; color:var(--muted); font-style:italic; max-width:600px; margin:0 auto; }
+.page-hero .sub { font-size:1.15rem; color:var(--muted); font-style:italic; max-width:600px; margin:0 auto; }
 /* IT Services page */
 .it-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:1.2rem; margin:2rem 0; }
 .it-card { background:var(--surf); border:1px solid var(--bord); padding:1.4rem; }
-.it-card h3 { font-family:'Cinzel',serif; font-size:.8rem; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); margin-bottom:.7rem; }
+.it-card h3 { font-family:'Cinzel',serif; font-size:.9rem; letter-spacing:.12em; text-transform:uppercase; color:var(--acc); margin-bottom:.7rem; }
 .it-list { list-style:none; }
-.it-list li { padding:.3rem 0; border-bottom:1px solid var(--bord); font-size:.88rem; color:var(--ash); }
+.it-list li { padding:.35rem 0; border-bottom:1px solid var(--bord); font-size:1rem; color:var(--ash); }
 .it-list li::before { content:"—  "; color:var(--acc); }
 .it-list li:last-child { border-bottom:none; }
 .rate-box { background:var(--surf); border:2px solid var(--acc); padding:2rem; text-align:center; margin:2rem 0; }
 .rate-box .rate-num { font-family:'Cinzel Decorative',serif; font-size:3rem; color:var(--acc); display:block; }
-.rate-box .rate-sub { color:var(--muted); font-size:.88rem; margin-top:.3rem; }
+.rate-box .rate-sub { color:var(--muted); font-size:1rem; margin-top:.3rem; }
 .contact-row { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin:1rem 0; }
-.contact-chip { background:var(--surf); border:1px solid var(--bord); padding:.5rem 1rem; font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.1em; color:var(--pale); text-decoration:none; transition:border-color .2s; }
+.contact-chip { background:var(--surf); border:1px solid var(--bord); padding:.6rem 1.1rem; font-family:'Cinzel',serif; font-size:.82rem; letter-spacing:.1em; color:var(--pale); text-decoration:none; transition:border-color .2s; }
 .contact-chip:hover { border-color:var(--acc); }
 /* Swordsmanship page */
 .sword-specs { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:1rem; margin:2rem 0; }
