@@ -1,15 +1,15 @@
 {
-  "fetched_at": "2026-04-27T13:08:56Z",
+  "fetched_at": "2026-04-28T16:18:42Z",
   "stories": {
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
       "fandom": "Star Wars",
       "chapters": "19",
-      "words": "101,207",
+      "words": "102,630",
       "updated": "4/22",
-      "favs": "256",
-      "follows": "326"
+      "favs": "257",
+      "follows": "330"
     },
     "woe": {
       "id": "14533340",
@@ -37,18 +37,18 @@
       "fandom": "Skyrim",
       "chapters": "29",
       "words": "269,684",
-      "updated": "17h",
-      "favs": "618",
+      "updated": "4/26",
+      "favs": "617",
       "follows": "778"
     },
     "frost": {
       "id": "14436816",
       "title": "Frost and Death",
       "fandom": "Danny Phantom",
-      "chapters": "8",
-      "words": "50,241",
-      "updated": "7/16/2025",
-      "favs": "133",
+      "chapters": "9",
+      "words": "54,268",
+      "updated": "17h",
+      "favs": "134",
       "follows": "176"
     }
   }
