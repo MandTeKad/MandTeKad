@@ -1,25 +1,15 @@
 {
-  "fetched_at": "2026-04-28T16:18:42Z",
+  "fetched_at": "2026-04-29T13:10:57Z",
   "stories": {
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
-      "fandom": "Star Wars",
-      "chapters": "19",
-      "words": "102,630",
-      "updated": "4/22",
-      "favs": "257",
-      "follows": "330"
+      "fandom": "Star Wars"
     },
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
-      "fandom": "ASOIAF",
-      "chapters": "17",
-      "words": "88,792",
-      "updated": "4/21",
-      "favs": "515",
-      "follows": "641"
+      "fandom": "ASOIAF"
     },
     "shadow": {
       "id": "14455132",
@@ -29,7 +19,7 @@
       "words": "104,074",
       "updated": "4/18",
       "favs": "466",
-      "follows": "607"
+      "follows": "608"
     },
     "lightning": {
       "id": "14414477",
@@ -39,7 +29,7 @@
       "words": "269,684",
       "updated": "4/26",
       "favs": "617",
-      "follows": "778"
+      "follows": "779"
     },
     "frost": {
       "id": "14436816",
@@ -47,9 +37,9 @@
       "fandom": "Danny Phantom",
       "chapters": "9",
       "words": "54,268",
-      "updated": "17h",
-      "favs": "134",
-      "follows": "176"
+      "updated": "4/27",
+      "favs": "136",
+      "follows": "179"
     }
   }
 }
