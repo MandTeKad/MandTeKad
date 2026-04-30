@@ -116,16 +116,16 @@ function setEl(id, val) {
 function applyStory(key, data) {
   const fb = FALLBACKS[key] || {};
   const d = data || {};
-  if (key === 'crucible' || key === 'woe') {
-    setEl(key+'-ch',  d.chapters || fb.chapters);
-    setEl(key+'-w',   d.words    || fb.words);
-    setEl(key+'-upd', d.updated  || fb.updated);
-  } else {
-    const el = document.getElementById(key+'-meta');
-    if (!el) return;
+  // All stories now use individual ch/w/upd elements
+  setEl(key+'-ch',  d.chapters || fb.chapters);
+  setEl(key+'-w',   d.words    || fb.words);
+  setEl(key+'-upd', d.updated  || fb.updated);
+  // Legacy meta element support (in case old HTML version still present)
+  const meta = document.getElementById(key+'-meta');
+  if (meta) {
     const ch = d.chapters || fb.chapters;
     const w  = d.words    || fb.words;
-    el.textContent = ch && w ? `${ch} ch · ${w} words · Active` : 'Active';
+    meta.textContent = ch && w ? ch + ' ch · ' + w + ' words · Active' : 'Active';
   }
 }
 async function loadStats() {
