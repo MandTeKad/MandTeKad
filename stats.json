@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-01T11:43:10Z",
+  "fetched_at": "2026-05-02T10:38:18Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -8,8 +8,8 @@
       "chapters": "20",
       "words": "106,033",
       "updated": "4/29",
-      "favs": "261",
-      "follows": "333"
+      "favs": "262",
+      "follows": "334"
     },
     "woe": {
       "id": "14533340",
@@ -18,18 +18,18 @@
       "chapters": "18",
       "words": "93,115",
       "updated": "4/28",
-      "favs": "522",
-      "follows": "653"
+      "favs": "524",
+      "follows": "654"
     },
     "shadow": {
       "id": "14455132",
       "title": "Shadow and Lightning",
       "fandom": "Harry Potter",
-      "chapters": "22",
-      "words": "104,074",
-      "updated": "4/18",
-      "favs": "469",
-      "follows": "610"
+      "chapters": "23",
+      "words": "107,049",
+      "updated": "10h",
+      "favs": "471",
+      "follows": "612"
     },
     "lightning": {
       "id": "14414477",
@@ -38,8 +38,8 @@
       "chapters": "29",
       "words": "269,684",
       "updated": "4/26",
-      "favs": "618",
-      "follows": "780"
+      "favs": "620",
+      "follows": "783"
     },
     "frost": {
       "id": "14436816",
@@ -48,8 +48,8 @@
       "chapters": "9",
       "words": "54,268",
       "updated": "4/27",
-      "favs": "138",
-      "follows": "182"
+      "favs": "140",
+      "follows": "184"
     }
   }
 }
