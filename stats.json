@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-02T10:38:18Z",
+  "fetched_at": "2026-05-03T09:26:00Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -18,8 +18,8 @@
       "chapters": "18",
       "words": "93,115",
       "updated": "4/28",
-      "favs": "524",
-      "follows": "654"
+      "favs": "527",
+      "follows": "661"
     },
     "shadow": {
       "id": "14455132",
@@ -27,9 +27,9 @@
       "fandom": "Harry Potter",
       "chapters": "23",
       "words": "107,049",
-      "updated": "10h",
-      "favs": "471",
-      "follows": "612"
+      "updated": "5/1",
+      "favs": "475",
+      "follows": "615"
     },
     "lightning": {
       "id": "14414477",
@@ -39,7 +39,7 @@
       "words": "269,684",
       "updated": "4/26",
       "favs": "620",
-      "follows": "783"
+      "follows": "784"
     },
     "frost": {
       "id": "14436816",
