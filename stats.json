@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-06T10:24:24Z",
+  "fetched_at": "2026-05-07T10:30:18Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -9,12 +9,7 @@
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
-      "fandom": "ASOIAF",
-      "chapters": "19",
-      "words": "96,547",
-      "updated": "7h",
-      "favs": "531",
-      "follows": "664"
+      "fandom": "ASOIAF"
     },
     "shadow": {
       "id": "14455132",
@@ -24,7 +19,7 @@
       "words": "107,049",
       "updated": "5/1",
       "favs": "480",
-      "follows": "624"
+      "follows": "625"
     },
     "lightning": {
       "id": "14414477",
