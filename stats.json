@@ -1,15 +1,25 @@
 {
-  "fetched_at": "2026-05-10T09:43:30Z",
+  "fetched_at": "2026-05-11T11:31:24Z",
   "stories": {
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
-      "fandom": "Star Wars"
+      "fandom": "Star Wars",
+      "chapters": "21",
+      "words": "108,850",
+      "updated": "5/6",
+      "favs": "276",
+      "follows": "352"
     },
     "woe": {
       "id": "14533340",
       "title": "Woe to the Vanquished",
-      "fandom": "ASOIAF"
+      "fandom": "ASOIAF",
+      "chapters": "19",
+      "words": "96,547",
+      "updated": "5/5",
+      "favs": "541",
+      "follows": "678"
     },
     "shadow": {
       "id": "14455132",
@@ -18,8 +28,8 @@
       "chapters": "24",
       "words": "110,696",
       "updated": "5/8",
-      "favs": "488",
-      "follows": "632"
+      "favs": "490",
+      "follows": "635"
     },
     "lightning": {
       "id": "14414477",
@@ -28,8 +38,8 @@
       "chapters": "29",
       "words": "269,684",
       "updated": "4/26",
-      "favs": "623",
-      "follows": "787"
+      "favs": "624",
+      "follows": "789"
     },
     "frost": {
       "id": "14436816",
