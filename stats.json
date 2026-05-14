@@ -1,15 +1,10 @@
 {
-  "fetched_at": "2026-05-13T10:36:22Z",
+  "fetched_at": "2026-05-14T10:26:29Z",
   "stories": {
     "crucible": {
       "id": "14526896",
       "title": "Crucible",
-      "fandom": "Star Wars",
-      "chapters": "21",
-      "words": "108,850",
-      "updated": "5/6",
-      "favs": "279",
-      "follows": "355"
+      "fandom": "Star Wars"
     },
     "woe": {
       "id": "14533340",
@@ -17,9 +12,9 @@
       "fandom": "ASOIAF",
       "chapters": "20",
       "words": "103,677",
-      "updated": "4h",
-      "favs": "546",
-      "follows": "683"
+      "updated": "5/12",
+      "favs": "550",
+      "follows": "686"
     },
     "shadow": {
       "id": "14455132",
@@ -29,7 +24,7 @@
       "words": "110,696",
       "updated": "5/8",
       "favs": "490",
-      "follows": "637"
+      "follows": "639"
     },
     "lightning": {
       "id": "14414477",
@@ -39,7 +34,7 @@
       "words": "269,684",
       "updated": "4/26",
       "favs": "624",
-      "follows": "789"
+      "follows": "790"
     },
     "frost": {
       "id": "14436816",
@@ -49,7 +44,7 @@
       "words": "54,268",
       "updated": "4/27",
       "favs": "143",
-      "follows": "188"
+      "follows": "189"
     }
   }
 }
