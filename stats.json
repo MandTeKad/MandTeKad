@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-28T11:44:25Z",
+  "fetched_at": "2026-05-29T11:35:03Z",
   "stories": {
     "crucible": {
       "id": "14526896",
@@ -19,22 +19,12 @@
     "lightning": {
       "id": "14414477",
       "title": "Of Lightning and Blood",
-      "fandom": "Skyrim",
-      "chapters": "29",
-      "words": "269,684",
-      "updated": "4/26",
-      "favs": "629",
-      "follows": "792"
+      "fandom": "Skyrim"
     },
     "frost": {
       "id": "14436816",
       "title": "Frost and Death",
-      "fandom": "Danny Phantom",
-      "chapters": "10",
-      "words": "62,062",
-      "updated": "5/22",
-      "favs": "151",
-      "follows": "191"
+      "fandom": "Danny Phantom"
     }
   }
 }
